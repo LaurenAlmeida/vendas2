@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "747622507551",
+    "firebase_url": "https://vendas2-45ea3.firebaseio.com",
+    "project_id": "vendas2-45ea3",
+    "storage_bucket": "vendas2-45ea3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747622507551:android:ed78d532be753279",
+        "android_client_info": {
+          "package_name": "br.com.ifsul.vendas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747622507551-t1fj0ehmgv710125f4c5vp6l9459dr71.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.ifsul.vendas",
+            "certificate_hash": "a03759828fe8ea4ad4c2fdc87480754017a7c3de"
+          }
+        },
+        {
+          "client_id": "747622507551-sa8n33e3ng2coe924pv6j8t1qdk9e3q5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdwlwMEh71WvaOVfMpDXNzzFsZCF2JhZ8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747622507551-sa8n33e3ng2coe924pv6j8t1qdk9e3q5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
