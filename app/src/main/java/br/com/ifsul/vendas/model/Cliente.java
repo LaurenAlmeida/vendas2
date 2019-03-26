@@ -11,12 +11,6 @@ public class Cliente implements Serializable {
     private boolean situacao;
     private String key; //atributo apenas local
 
-    public Cliente() {
-    }
-
-    public Long getCodigoDeBarras() {
-        return codigoDeBarras;
-    }
 
     public void setCodigoDeBarras(Long codigoDeBarras) {
         this.codigoDeBarras = codigoDeBarras;
