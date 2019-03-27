@@ -43,12 +43,13 @@ public class ClientesAdapter extends ArrayAdapter<Cliente> {
         TextView tvNome = convertView.findViewById(R.id.tvNomeClienteAdapter);
         TextView tvSobrenome = convertView.findViewById(R.id.tvSobrenomeClienteAdapter);
         TextView tvCpf = convertView.findViewById(R.id.tvCpfClienteAdapter);
-       //TextView tvCodigoDeBarras = convertView.findViewById(R.id.tvCodigoClienteAdapter);
+        TextView tvCodigoDeBarras = convertView.findViewById(R.id.tvCodigoClienteAdapter);
         ImageView imvFoto = convertView.findViewById(R.id.imvFotoClienteAdapter);
 
         //vincula os dados do objeto de modelo à view
         tvNome.setText(cliente.getNome());
        tvSobrenome.setText(cliente.getSobrenome());
+        tvCodigoDeBarras.setText(cliente.getCodigoDeBarras().toString());
         tvCpf.setText(cliente.getCpf());
         if(cliente.getUrl_foto() != null){
             //aqui vai vincular a foto do produto vindo do firebase usando a biblioteca Picasso

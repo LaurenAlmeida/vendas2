@@ -12,33 +12,54 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:cardCornerRadius="2dp"
         app:cardElevation="6dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/tvCodigoClienteAdapter"
+            app:layout_constraintEnd_toEndOf="@+id/tvCodigoClienteAdapter"
+            app:layout_constraintStart_toEndOf="@+id/tvCodigoClienteAdapter"
+            app:layout_constraintTop_toTopOf="@+id/tvCodigoClienteAdapter">
 
             <TextView
                 android:id="@+id/tvCpfClienteAdapter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="93dp"
+                android:layout_height="21dp"
                 android:layout_gravity="end"
-                android:layout_marginEnd="76dp"
-                android:layout_marginRight="76dp"
-                android:layout_marginBottom="36dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginRight="64dp"
+                android:layout_marginBottom="24dp"
                 android:gravity="right"
-                android:hint=""
+                android:hint="cpf"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSobrenomeClienteAdapter" />
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/imvFotoClienteAdapter" />
+
+            <TextView
+                android:id="@+id/tvCodigoClienteAdapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="232dp"
+                android:layout_marginRight="232dp"
+                android:layout_marginBottom="17dp"
+                android:gravity="right"
+                android:hint="codigo"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imvFotoClienteAdapter"
+                app:layout_constraintTop_toBottomOf="@+id/tvNomeClienteAdapter" />
 
             <TextView
                 android:id="@+id/tvNomeClienteAdapter"
@@ -47,20 +68,23 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginBottom="7dp"
                 android:hint="Nome"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvCodigoClienteAdapter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imvFotoClienteAdapter"
-                app:layout_constraintTop_toTopOf="@+id/imvFotoClienteAdapter" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
                 android:id="@+id/tvSobrenomeClienteAdapter"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="161dp"
+                android:layout_height="20dp"
                 android:layout_gravity="start"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
@@ -70,8 +94,10 @@
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/tvCpfClienteAdapter"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/imvFotoClienteAdapter"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.263" />
 
 
             <ImageView
@@ -81,12 +107,12 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="136dp"
-                android:layout_marginRight="136dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="foto"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tvSobrenomeClienteAdapter"
+                app:layout_constraintEnd_toStartOf="@+id/tvCodigoClienteAdapter"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"

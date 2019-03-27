@@ -56,6 +56,10 @@ public class Cliente implements Serializable {
         this.situacao = situacao;
     }
 
+    public Long getCodigoDeBarras() {
+        return codigoDeBarras;
+    }
+
     public String getKey() {
         return key;
     }
