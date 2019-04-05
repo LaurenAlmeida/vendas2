@@ -1,11 +1,17 @@
 package br.com.ifsul.vendas.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,6 +25,7 @@ import java.util.List;
 import br.com.ifsul.vendas.R;
 import br.com.ifsul.vendas.adapter.ProdutosAdapter;
 import br.com.ifsul.vendas.model.Produto;
+import br.com.ifsul.vendas.setup.AppSetup;
 
 public class ProdutosActivity extends AppCompatActivity {
 
@@ -26,65 +33,95 @@ public class ProdutosActivity extends AppCompatActivity {
     private ListView lvProdutos;
     private List<Produto> produtos;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produtos);
 
         lvProdutos = findViewById(R.id.lv_produtos);
-        lvProdutos.setOnItemClickListener();
+        lvProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Toast.makeText(ProdutosActivity.this, "Clicou no cartão", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(ProdutosActivity.this, ProdutoDetalheActivity.class);
+                intent.putExtra("position",position);
+                startActivity(intent);
+            }
+        });
 
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("vendas/produtos");
 
         // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.orderByChild("nome").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.d(TAG, "Value is: " + dataSnapshot.getValue());
 
-                List<Produto> produtos = new ArrayList<>();
-                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                AppSetup.produtos = new ArrayList<>();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     Produto produto = ds.getValue(Produto.class);
                     produto.setKey(ds.getKey());
-                    produtos.add(produto);
+                    AppSetup.produtos.add(produto);
                 }
 
-                lvProdutos.setAdapter(new ProdutosAdapter(ProdutosActivity.this, produtos));
+                lvProdutos.setAdapter(new ProdutosAdapter(ProdutosActivity.this, AppSetup.produtos));
 
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+            public void onCancelled(@NonNull DatabaseError dberror) {
+                Log.w(TAG, "Failed to read value", dberror.toException());
             }
+
+
         });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_activity_produtos,menu);
-        SearchView searchView = (SearchView) menu.findItem.R.id.menuItem_pesquisar).getActionView();
-        searchView = setQueryHint(getString(R.string.hint_nome_searchview));
-        searchView = setQueryTextListener(new SearchView(setOnQueryTextListener(){
-
-            public boolean onQueryTextSubmit(String query){
+        SearchView searchView = (SearchView) menu.findItem(R.id.menuitem_pesquisar).getActionView();
+        searchView.setQueryHint(getString(R.string.hint_nome_searchview));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
                 return true;
             }
 
             @Override
-            public void setOnQueryTextChange(String newText) {
-              List<Produto> produtosTemp = new ArrayList<>();
-              for (Produto produto : produtos){
-                  if (produto.getNome().contains(newText)){
-                      produtosTemp.add(produto);
-                  }
-              }
+            public boolean onQueryTextChange(String newText) {
+                List<Produto> produtosTemp = new ArrayList<>();
+                for (Produto produto :AppSetup.produtos){
+                    if(produto.getNome().contains(newText)){
+                        produtosTemp.add(produto);
+                    }
+                }
+                lvProdutos.setAdapter(new ProdutosAdapter(ProdutosActivity.this,produtosTemp));
 
+                return true;
             }
         });
         return true;
+
     }
-}
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menuitem_barcode:
+                Toast.makeText(this,"Ler código de barras",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+}//fim classe
+
+
+
+
+
+
+
