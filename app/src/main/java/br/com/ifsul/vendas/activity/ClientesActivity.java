@@ -24,25 +24,32 @@ public class ClientesActivity extends AppCompatActivity {
 
     private static final String TAG = "clientesactivity";
     private ListView lvClientes;
+    private List<cliente> clientes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente);
-        lvClientes = findViewById(R.id.lv_clientes);
 
+        lvClientes = findViewById(R.id.lv_clientes);
+        lvClientes.setOnItemClickListener(new AdapterView.setOnItemClickListener(){
+          @Override
+          public void onItemClick(AdapterView<?> parent,View view,int position,long id){
+            selecionarCliente("position");
+          }
+        });
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("vendas/clientes");
 
         // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.orderByChild("nome").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 Log.d(TAG, "Value is: " + dataSnapshot.getValue());
 
-                List<Cliente> clientes = new ArrayList<>();
+                clientes = new ArrayList<>();
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     Cliente cliente = ds.getValue(Cliente.class);
                     clientes.add(cliente);
@@ -59,4 +66,26 @@ public class ClientesActivity extends AppCompatActivity {
             }
         });
     }
+
+          private void selecionarCliente(int position){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            //Título e mensagem
+            builder.setTitle(R.string.title_selecionar_cliente);
+            final Cliente cliente = clientes.get(position);
+            builder.setMessage(getString(R.string.message_nome_cliente) + ": "+cliente.getNome() + "" + cliente.getSobrenome() + "" + getString(R.string.message_cpf_cliente) + cliente.getCpf());
+            //Botões
+            builder.SetPositiveButton(R.string.alertdialog_sim,new DialogInterface.onClickListener(){
+              @Override
+              public void onClick(DialogInterface dialog,int which){
+                AppSetup.cliente = cliente;
+                Toast.makeText(ClientesActivity.this,getString(R.string.toast_cliente_selecionado),Toast.LENGHT_SHORT).show();
+                finish();
+              }
+            });
+
+
+
+          }
+
+
 }
