@@ -37,13 +37,25 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
 
        Integer position = getIntent().getExtras().getInt("position");
        produto = AppSetup.produtos.get(position);
+       Log.d(TAG, "" + produto.equals(AppSetup.produtos.get(position)));
 
-       tvNome.setText(produto.getNome());
-       tvDescricao.setText("Descrição: " + produto.getDescricao());
-       tvValor.setText(NumberFormat.getCurrencyInstance().format(produto.getValor()));
+        //bindview
+       tvNome.setText(AppSetup.produtos.get(position).getNome());
+       tvDescricao.setText("Descrição: " + AppSetup.produtos.get(position).getDescricao());
+       tvValor.setText(NumberFormat.getCurrencyInstance().format(AppSetup.produto.get(position).getValor()));
        if(produto.getUrl_foto() != null){
            //carrega a img
        }
+       FirebaseDatabase database = FirebaseDatabase.getInstance();
+       DatabaseReference myRef = database.getReference("vendas/produtos/" + produto.getKey() + "/quantidade");
+
+       myRef.addValueEventListener(new valueEventListener(){
+         @Override
+         public void onDataChange (@NonNull DataSnapshot dataSnapshot){
+           Integer quantidade = dataSnapshot.getValue(Integer.class);
+           tvEstoque.setText(String.format("%s %s",))
+         }
+       });
        tvEstoque.setText(String.format("%s %s",getString(R.string.label_estoque), produto.getQuantidade().toString()));
 
 
