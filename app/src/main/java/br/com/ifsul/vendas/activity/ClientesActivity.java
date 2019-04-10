@@ -83,9 +83,48 @@ public class ClientesActivity extends AppCompatActivity {
               }
             });
 
-
-
+            builder.setNegativeButton(R.string.alertdialog_nao,new DialogInterface.onClickListener(){
+               @Override
+               public void onClick(DialogInterface dialog,int which){
+                 Snackbar.make(findViewById(R.id.container_activity_clientes),R.string.snack_operacao_cancelada,Snackbar.LENGHT_LONG).show();
+               }
+            });
+              builder.show();
           }
 
+     @Override
+     public boolean OnCreateOptionsMenu(Menu menu){
+       getMenuInflater().inflate(R.menu.menu_activity_clientes,menu);
+       SearchView searchView = (SearchView) menu.findItem(R.id.menuitem_pesquisar).getActionView();
+       searchView.setQueryHint(getString(R.string.hint_nome_searchview));
+       searchView.setOnQueryTextListener(new SearchView.setOnQueryTextListener(){
+         @Override
+         public boolean onQueryTextSubmit(String query){
+           return true;
+         }
+            @Override
+            public boolean onQueryChange(String newText){
+              List<Cliente> clientesTemp = new ArrayList<>();
+              for (Cliente cliente : cliente){
+                if(cliente.getNome().contains(newText)){
+                  clientesTemp.add(cliente);
+                }
+              }
 
+              //carrega dados
+              lvClientes.setAdapter(new ClientesAdapter(ClientesActivity.this,clientesTemp));
+              return true;
+            }
+       });
+       return true;
+     }
+     @Override
+     public boolean onOptionsItemSelected(MenuItem item){
+       switch(item.getItemId()){
+         case R.id.menuitem_barcode:
+         Toast.makeText(this,"Ler código de barras",Toast.LENGHT_SHORT).show();
+         break;
+       }
+       return true;
+     }
 }
