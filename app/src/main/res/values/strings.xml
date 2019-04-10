@@ -24,4 +24,11 @@
     <string name="Vender">Vender</string>
     <string name="Quantidade">Quantidade</string>
     <string name="email_vendedor">email_vendedor</string>
+    <string name="toast_cliente_selecionado" />
+    <string name="alertdialog_sim" />
+    <string name="message_nome_cliente" />
+    <string name="title_selecionar_cliente" />
+    <string name="snack_operacao_cancelada" />
+    <string name="alertdialog_nao" />
+    <string name="message_cpf_cliente" />
 </resources>
