@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="container_activity_clientes" type="id" />
+    <item name="lv_carrinho" type="id" />
 </resources>
