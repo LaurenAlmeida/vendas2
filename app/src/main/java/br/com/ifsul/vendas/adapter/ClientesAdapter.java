@@ -51,10 +51,10 @@ public class ClientesAdapter extends ArrayAdapter<Cliente> {
        tvSobrenome.setText(cliente.getSobrenome());
         tvCodigoDeBarras.setText(cliente.getCodigoDeBarras().toString());
         tvCpf.setText(cliente.getCpf());
-        if(cliente.getUrl_foto() != null){
-            //aqui vai vincular a foto do produto vindo do firebase usando a biblioteca Picasso
-        }else{
+        if(cliente.getUrl_foto().equals("")){
             imvFoto.setImageResource(R.drawable.img_cliente_icon_524x524);
+        }else{
+            ///img do storage
         }
 
 
