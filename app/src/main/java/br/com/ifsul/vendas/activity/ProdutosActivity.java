@@ -112,16 +112,53 @@ public class ProdutosActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuitem_barcode:
-                Toast.makeText(this,"Ler código de barras",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Ler código de barras",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ProdutosActivity.this,BarcodeCaptureActivity.class);
+                intent.putExtra(BarcodeCaptureActivity.AutoFocus,true);
+                intent.putExtra(BarcodeCaptureActivity.UseFlash,false);
+                startActivityForResult(intent,RC_BARCODE_CAPTURE);
                 break;
         }
         return true;
     }
+
+    @Override
+   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+       if (requestCode == RC_BARCODE_CAPTURE) {
+           if (resultCode == CommonStatusCodes.SUCCESS) {
+               if (data != null) {
+                   Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
+                   //Toast.makeText(this, barcode.displayValue, Toast.LENGTH_SHORT).show();
+                   Log.d(TAG, "Barcode read: " + barcode.displayValue);
+                   //localiza o produto na lista (ou não)
+                   boolean flag = true;
+                   int position = 0;
+                   for (Produto produto : AppSetup.produtos) {
+                       if (String.valueOf(produto.getCodigoDeBarras()).equals(barcode.displayValue)) {
+                           flag = false;
+                           Intent intent = new Intent(ProdutosActivity.this, ProdutoDetalheActivity.class);
+                           intent.putExtra("position", position);
+                           startActivity(intent);
+                           break;
+                       }
+                       position++;
+                   }
+                   if (flag) {
+                       Snackbar.make(findViewById(R.id.container_activity_produtos), "codigo de barras não cadastrado", Snackbar.LENGTH_LONG).show();
+                   }
+               } else {
+                   Toast.makeText(this, "Falha na leitura do código", Toast.LENGTH_SHORT).show();
+                   Log.d(TAG, "No barcode captured, intent data is null");
+               }
+           } else {
+               Toast.makeText(this, String.format(getString(R.string.barcode_error),
+                       CommonStatusCodes.getStatusCodeString(resultCode)), Toast.LENGTH_SHORT).show();
+           }
+       } else {
+           super.onActivityResult(requestCode, resultCode, data);
+       }
+   } 
+
+
+
 }//fim classe
-
-
-
-
-
-
-
