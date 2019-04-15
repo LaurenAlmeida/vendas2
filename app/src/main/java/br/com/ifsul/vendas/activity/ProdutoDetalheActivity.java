@@ -96,6 +96,9 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
                             item.setTotalItem(quantidade * produto.getValor());
                             item.setSituacao(true);
                             AppSetup.carrinho.add(item);
+                            Toast.makeText(ProdutoDetalheActivity.this, getString(R.string.toast_adicionado_ao_carrinho), Toast.LENGTH_SHORT).show();
+                           startActivity(new Intent(ProdutoDetalheActivity.this, CarrinhoActivity.class));
+                           finish();
 
                         }else{
                             Toast.makeText(ProdutoDetalheActivity.this, "Quantidade acima do estoque.", Toast.LENGTH_SHORT).show();
