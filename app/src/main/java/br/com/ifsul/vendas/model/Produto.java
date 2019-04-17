@@ -10,7 +10,7 @@ public class Produto implements Serializable{
     private Integer quantidade;
     private boolean situacao;
     private String url_foto;
-    private String key; //atributo apenas local
+    private String key;
 
     public Produto() {
     }

@@ -1,4 +1,4 @@
-package br.edu.ifsul.vendas.adapter;
+package br.com.ifsul.vendas.adapter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -14,10 +14,10 @@ import android.widget.TextView;
 import java.text.NumberFormat;
 import java.util.List;
 
-import br.edu.ifsul.vendas.R;
-import br.edu.ifsul.vendas.activity.CarrinhoActivity;
-import br.edu.ifsul.vendas.model.ItemPedido;
-import br.edu.ifsul.vendas.model.Produto;
+import br.com.ifsul.vendas.R;
+import br.com.ifsul.vendas.activity.CarrinhoActivity;
+import br.com.ifsul.vendas.model.ItemPedido;
+import br.com.ifsul.vendas.model.Produto;
 
 public class CarrinhoAdapter extends ArrayAdapter<ItemPedido> {
     private final Context context;

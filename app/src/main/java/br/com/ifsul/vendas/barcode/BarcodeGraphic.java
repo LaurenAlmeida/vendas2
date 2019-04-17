@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.edu.ifsul.vendas.barcode;
+package br.com.ifsul.vendas.barcode;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -22,7 +22,7 @@ import android.graphics.RectF;
 
 import com.google.android.gms.vision.barcode.Barcode;
 
-import br.edu.ifsul.vendas.barcode.camera.GraphicOverlay;
+import br.com.ifsul.vendas.barcode.camera.GraphicOverlay;
 
 /**
  * Graphic instance for rendering barcode position, size, and ID within an associated graphic

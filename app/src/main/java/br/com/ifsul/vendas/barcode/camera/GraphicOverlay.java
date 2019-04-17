@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.edu.ifsul.vendas.barcode.camera;
+package br.com.ifsul.vendas.barcode.camera;
 
 import android.content.Context;
 import android.graphics.Canvas;

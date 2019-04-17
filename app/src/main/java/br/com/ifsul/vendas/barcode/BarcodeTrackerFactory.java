@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.edu.ifsul.vendas.barcode;
+package br.com.ifsul.vendas.barcode;
 
 import android.content.Context;
 
@@ -21,7 +21,7 @@ import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.Tracker;
 import com.google.android.gms.vision.barcode.Barcode;
 
-import br.edu.ifsul.vendas.barcode.camera.GraphicOverlay;
+import br.com.ifsul.vendas.barcode.camera.GraphicOverlay;
 
 /**
  * Factory for creating a tracker and associated graphic to be associated with a new barcode.  The

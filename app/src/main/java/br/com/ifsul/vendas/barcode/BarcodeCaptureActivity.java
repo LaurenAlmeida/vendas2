@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.edu.ifsul.vendas.barcode;
+package br.com.ifsul.vendas.barcode;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -49,10 +49,10 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
-import br.edu.ifsul.vendas.R;
-import br.edu.ifsul.vendas.barcode.camera.CameraSource;
-import br.edu.ifsul.vendas.barcode.camera.CameraSourcePreview;
-import br.edu.ifsul.vendas.barcode.camera.GraphicOverlay;
+import br.com.ifsul.vendas.R;
+import br.com.ifsul.vendas.barcode.camera.CameraSource;
+import br.com.ifsul.vendas.barcode.camera.CameraSourcePreview;
+import br.com.ifsul.vendas.barcode.camera.GraphicOverlay;
 
 /**
  * Activity for the multi-tracker app.  This app detects barcodes and displays the value with the

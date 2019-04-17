@@ -1,5 +1,6 @@
 package br.com.ifsul.vendas.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,6 +28,9 @@ public class ProdutosAdapter extends ArrayAdapter<Produto> {
         this.context = context;
     }
 
+    @SuppressLint("SetTextI18n")
+    @SuppressWarnings("StatementWithEmptyBody")
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -45,13 +49,14 @@ public class ProdutosAdapter extends ArrayAdapter<Produto> {
         ImageView imvFoto = convertView.findViewById(R.id.imvFotoProdutoAdapter);
 
         //vincula os dados do objeto de modelo à view
+        assert produto != null;
         tvNome.setText(produto.getNome());
         tvEstoque.setText(produto.getQuantidade().toString());
         tvValor.setText(NumberFormat.getCurrencyInstance().format(produto.getValor()));
         if(produto.getUrl_foto().equals("")){
-              imvFoto.setImageResource(R.drawable.img_carrinho_de_compras);
+            imvFoto.setImageResource(R.drawable.img_carrinho_de_compras);
         }else{
-        //img storage
+            //carrega a imagem do serviço Storage aqui
         }
 
 

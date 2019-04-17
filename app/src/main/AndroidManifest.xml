@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.ifsul.vendas">
 
-//Leitor codigo de barraas
-<uses-feature android:name="android.hardware.camera" /> <!-- Para o leitor de código de barras -->
-<uses-permission android:name="android.permission.CAMERA" /> <!-- para acesso ao cartão sd -->
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- Para o leitor de código de barras -->
+    <uses-feature android:name="android.hardware.camera" /> <!-- Para o leitor de código de barras -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- para acesso ao cartão sd -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -17,14 +17,18 @@
         <activity android:name=".activity.CarrinhoActivity"></activity>
         <activity android:name=".activity.ProdutoDetalheActivity" />
         <activity android:name=".activity.ClientesActivity" />
-        <activity android:name=".activity.LoginActivity" />
+
         <activity android:name=".activity.ProdutosActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".barcode.BarcodeCaptureActivity" android:label="Leitor de código" />
+
     </application>
 
 </manifest>
