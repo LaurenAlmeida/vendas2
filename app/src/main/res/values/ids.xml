@@ -2,4 +2,6 @@
 <resources>
     <item name="container_activity_clientes" type="id" />
     <item name="lv_carrinho" type="id" />
+    <item name="tvTotalPedidoCarrinho" type="id" />
+    <item name="tvClienteCarrinho" type="id" />
 </resources>

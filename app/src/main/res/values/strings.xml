@@ -9,7 +9,7 @@
     <string name="email_fail">Email não cadastrado.</string>
     <string name="email_already">Email já cadastrado.</string>
     <string name="signup_fail">Sign UP falhou. A internet está conectada?</string>
-    <string name="hint_nome_searchview" />
+    <string name="hint_nome_searchview">hint_nm_sv</string>
     <string name="foto_do_produto">foto_do_produto</string>
     <string name="hint_quantos">hint_quantos</string>
     <string name="hint_descricao_produto">hint_descricao_produto</string>
@@ -24,13 +24,13 @@
     <string name="Vender">Vender</string>
     <string name="Quantidade">Quantidade</string>
     <string name="email_vendedor">email_vendedor</string>
-    <string name="toast_cliente_selecionado" />
-    <string name="alertdialog_sim" />
-    <string name="message_nome_cliente" />
-    <string name="title_selecionar_cliente" />
-    <string name="snack_operacao_cancelada" />
-    <string name="alertdialog_nao" />
-    <string name="message_cpf_cliente" />
+    <string name="toast_cliente_selecionado">cliente_selecionado </string>
+    <string name="alertdialog_sim">sim</string>
+    <string name="message_nome_cliente">nome_cliente</string>
+    <string name="title_selecionar_cliente">selecionar</string>
+    <string name="snack_operacao_cancelada">op_cancelada</string>
+    <string name="alertdialog_nao">nao</string>
+    <string name="message_cpf_cliente">cpf</string>
     <!-- Barcode -->
     <string name="ok">OK</string>
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
@@ -44,6 +44,8 @@
     <string name="barcode_success">Barcode read successfully</string>
     <string name="barcode_failure">No barcode captured</string>
     <string name="barcode_error">"Error reading barcode: %1$s"</string>
-    <string name="toast_adicionado_ao_carrinho" />
+    <string name="toast_adicionado_ao_carrinho">item_adicionado</string>
+    <string name="menu_vender">menu_vender</string>
+    <string name="cancelar">cancelar</string>
 
 </resources>
