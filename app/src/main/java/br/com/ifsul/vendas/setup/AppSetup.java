@@ -13,4 +13,5 @@ public class AppSetup {
     public static Cliente cliente = null;
     public static List<ItemPedido> carrinho = new ArrayList<>();
 
+
 }

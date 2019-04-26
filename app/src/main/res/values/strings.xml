@@ -47,5 +47,9 @@
     <string name="toast_adicionado_ao_carrinho">item_adicionado</string>
     <string name="menu_vender">menu_vender</string>
     <string name="cancelar">cancelar</string>
+    <string name="nome_do_cliente_carrinho">nome_cliente</string>
+    <string name="total_pedido_carrinho">total_carrinho</string>
+    <string name="hint_total_item">total_item</string>
+    <string name="hint_quantidade">quantidade</string>
 
 </resources>
