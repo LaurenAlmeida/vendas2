@@ -64,10 +64,6 @@ private void atualizaView(){
     tvTotalPedidoCarrinho.setText(NumberFormat.getCurrencyInstance().format(totalPedido));
 
 }
-
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_activity_carrinho,menu);
@@ -77,7 +73,7 @@ private void atualizaView(){
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.menuitem_salvar:
+            case R.id.menuitem_salvar:{
                 Pedido pedido = new Pedido();
                 pedido.setCliente(AppSetup.cliente);
                 pedido.setItens(AppSetup.carrinho);
@@ -93,17 +89,43 @@ private void atualizaView(){
                 myRef.child(key).setValue(pedido);
                 Toast.makeText(this,"Pedido salvo",Toast.LENGTH_LONG).show();
                 break;
+                }
+
+                case R.id.menuitem_cancelar:{
+                    cancelaPedido();
+                  break;
+                  }
+                return true;
         }
-
-        case R.id.menuitem_cancelar:
-            cancelaPedido();
-          break;
     }
 
-
-
-}
     private void cancelaPedido() {
-    }
-
-
+      AlertDialog.Builder builder = new AlertDialog.Builder(this);
+      builder.setTitle("Atenção");
+      final Cliente cliente;
+      builder.setMessage("Deseja cancelar o pedido?");
+      builder.setPositiveButton("Sim",new DialogInterface.OnItemClickListener(){
+        @Override
+        public void onClick(DialogInterface dialog,int which){
+          for (final ItemPedido itemPedido : AppSetup.carrinho){
+            final DatabaseReference myRef = database.getReference().child("vendas/produtos").child(itemPedido.getProduto().getKey()).child("quantidade");
+            myRef.addListenerForSingleValueEvent(new ValueEventListener(){
+                    @Override
+              public void onCancelled(DatabaseError error){
+              }
+            });
+          }
+          Toast.makeText(CarrinhoActivity.this,"Pedido cancelado",Toast.LENGTH_SHORT).show();
+          AppSetup.carrinho.clear();
+          AppSetup.cliente = null;
+          finish();
+        }
+      });
+      builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+          @Override public void onClick(DialogInterface dialog, int which) {
+          Toast.makeText(CarrinhoActivity.this, "Operação cancelada.", Toast.LENGTH_SHORT).show();
+         }
+});
+        builder.show();
+}
+}
