@@ -1,5 +1,8 @@
 package br.com.ifsul.vendas.activity;
 
+import android.content.DialogInterface;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,14 +14,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.NumberFormat;
 import java.util.Date;
 
 import br.com.ifsul.vendas.R;
 import br.com.ifsul.vendas.adapter.CarrinhoAdapter;
+import br.com.ifsul.vendas.model.Cliente;
 import br.com.ifsul.vendas.model.ItemPedido;
 import br.com.ifsul.vendas.model.Pedido;
 import br.com.ifsul.vendas.setup.AppSetup;
@@ -46,12 +53,14 @@ public class CarrinhoActivity extends AppCompatActivity {
         tvClienteCarrinho.setText(AppSetup.cliente.getNome()+" "+AppSetup.cliente.getSobrenome());
         database = FirebaseDatabase.getInstance();
 
-        lvCarrinho.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvCarrinho.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-             //
-            }
-        });
+
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                excluiItem(position);
+                return true;
+
+        } });
     }
 
 private void atualizaView(){
@@ -63,7 +72,23 @@ private void atualizaView(){
     }
     tvTotalPedidoCarrinho.setText(NumberFormat.getCurrencyInstance().format(totalPedido));
 
-}
+}//fim atualiza
+
+    private void excluiItem(int position){
+        final ItemPedido itemPedido = AppSetup.carrinho.get(position);
+        final DatabaseReference myRef = database.getReference().child("vendas/produtos").child(itemPedido.getProduto().getKey()).child("quantidade");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override public void onDataChange(DataSnapshot dataSnapshot) {
+                Integer estoque = dataSnapshot.getValue(Integer.class);
+                myRef.setValue(estoque + itemPedido.getQuantidade());
+            }
+                @Override public void onCancelled(DatabaseError databaseError) {
+
+                } }); AppSetup.carrinho.remove(position);
+            atualizaView();
+        Toast.makeText(this, "Item excluído.", Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_activity_carrinho,menu);
@@ -95,8 +120,8 @@ private void atualizaView(){
                     cancelaPedido();
                   break;
                   }
-                return true;
         }
+        return true;
     }
 
     private void cancelaPedido() {
@@ -104,13 +129,18 @@ private void atualizaView(){
       builder.setTitle("Atenção");
       final Cliente cliente;
       builder.setMessage("Deseja cancelar o pedido?");
-      builder.setPositiveButton("Sim",new DialogInterface.OnItemClickListener(){
+      builder.setPositiveButton("Sim",new DialogInterface.OnClickListener(){
         @Override
         public void onClick(DialogInterface dialog,int which){
           for (final ItemPedido itemPedido : AppSetup.carrinho){
             final DatabaseReference myRef = database.getReference().child("vendas/produtos").child(itemPedido.getProduto().getKey()).child("quantidade");
             myRef.addListenerForSingleValueEvent(new ValueEventListener(){
-                    @Override
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
               public void onCancelled(DatabaseError error){
               }
             });
