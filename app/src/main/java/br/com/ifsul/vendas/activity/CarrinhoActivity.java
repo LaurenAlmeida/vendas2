@@ -30,6 +30,8 @@ import br.com.ifsul.vendas.model.ItemPedido;
 import br.com.ifsul.vendas.model.Pedido;
 import br.com.ifsul.vendas.setup.AppSetup;
 
+import static br.com.ifsul.vendas.setup.AppSetup.produtos;
+
 public class CarrinhoActivity extends AppCompatActivity {
 
     private static final String TAG = "carrinhoActivity";
@@ -74,19 +76,43 @@ private void atualizaView(){
 
 }//fim atualiza
 
-    private void excluiItem(int position){
+    private void excluiItem(final int position){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Atenção");
         final ItemPedido itemPedido = AppSetup.carrinho.get(position);
         final DatabaseReference myRef = database.getReference().child("vendas/produtos").child(itemPedido.getProduto().getKey()).child("quantidade");
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override public void onDataChange(DataSnapshot dataSnapshot) {
-                Integer estoque = dataSnapshot.getValue(Integer.class);
-                myRef.setValue(estoque + itemPedido.getQuantidade());
-            }
-                @Override public void onCancelled(DatabaseError databaseError) {
+        builder.setMessage("Deseja excluir o pedido?");
+        builder.setPositiveButton("Sim",new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog,int which){
+                for (final ItemPedido itemPedido : AppSetup.carrinho){
+                    final DatabaseReference myRef = database.getReference().child("vendas/produtos").child(itemPedido.getProduto().getKey()).child("quantidade");
+                    myRef.addListenerForSingleValueEvent(new ValueEventListener(){
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Integer estoque = dataSnapshot.getValue(Integer.class);
+                            myRef.setValue(estoque + itemPedido.getQuantidade());
+                            atualizaEstoque(position);
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError error){
+                        }
+                    });
+                }
 
-                } }); AppSetup.carrinho.remove(position);
-            atualizaView();
-        Toast.makeText(this, "Item excluído.", Toast.LENGTH_SHORT).show();
+                AppSetup.carrinho.remove(position);
+                atualizaView();
+                Toast.makeText(CarrinhoActivity.this,"Produto excluído",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(CarrinhoActivity.this, "Operação cancelada.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
     }
 
     @Override
@@ -158,4 +184,23 @@ private void atualizaView(){
 });
         builder.show();
 }
+
+
+private void atualizaEstoque(int position){
+        final DatabaseReference myRef = database.getReference("vendas/produtos");
+        ItemPedido item = AppSetup.carrinho.get(position);
+        myRef.child(item.getProduto().getKey()).child("quantidade").setValue(item.getQuantidade());
+        AppSetup.carrinho.remove(position);
+        atualizaView();
+        }
+
+
+
+
+
 }
+
+
+
+
+
