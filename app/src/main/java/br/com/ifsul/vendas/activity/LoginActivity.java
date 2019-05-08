@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import br.com.ifsul.vendas.R;
+import br.com.ifsul.vendas.setup.AppSetup;
 
 public class LoginActivity extends AppCompatActivity {
 

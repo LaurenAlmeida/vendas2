@@ -3,8 +3,13 @@ package br.com.ifsul.vendas.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import br.com.ifsul.vendas.R;
 import br.com.ifsul.vendas.adapter.ProdutosAdapter;
@@ -32,7 +38,7 @@ import br.com.ifsul.vendas.model.Produto;
 import br.com.ifsul.vendas.setup.AppSetup;
 
 
-public class ProdutosActivity extends AppCompatActivity {
+public class ProdutosActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "produtosactivity";
     private static final int RC_BARCODE_CAPTURE = 1;
@@ -41,7 +47,17 @@ public class ProdutosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_produtos);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         lvProdutos = findViewById(R.id.lv_produtos);
         lvProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -67,9 +83,10 @@ public class ProdutosActivity extends AppCompatActivity {
                 Log.d(TAG, "Value is: " + dataSnapshot.getValue());
 
                 AppSetup.produtos = new ArrayList<>();
-                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     Produto produto = ds.getValue(Produto.class);
                     produto.setKey(ds.getKey()); //armazena a UUID gerada pelo banco
+                    produto.setIndex(AppSetup.produtos.size());
                     AppSetup.produtos.add(produto);
                 }
 
@@ -87,6 +104,16 @@ public class ProdutosActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_activity_produtos, menu);
@@ -101,8 +128,8 @@ public class ProdutosActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 List<Produto> produtosTemp = new ArrayList<>();
-                for(Produto produto : AppSetup.produtos){
-                    if(produto.getNome().contains(newText)){
+                for (Produto produto : AppSetup.produtos) {
+                    if (produto.getNome().contains(newText)) {
                         produtosTemp.add(produto);
                     }
                 }
@@ -116,7 +143,7 @@ public class ProdutosActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menuitem_barcode:
                 //Toast.makeText(this, "Ler código de barras", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ProdutosActivity.this, BarcodeCaptureActivity.class);
@@ -165,4 +192,28 @@ public class ProdutosActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-}
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        switch (menuItem.getItemId()) {
+            case R.id.nav_carrinho: {
+                if (AppSetup.carrinho.isEmpty()) {
+                    Toast.makeText(this, "O carrinho esta vazio", Toast.LENGTH_SHORT).show();
+                } else {
+                    startActivity(new Intent(ProdutosActivity.this, CarrinhoActivity.class));
+                }
+
+                break;
+            }
+        }
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+
+        }
+    }
+
+
+
