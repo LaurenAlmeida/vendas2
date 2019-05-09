@@ -206,6 +206,7 @@ public class ProdutosActivity extends AppCompatActivity implements NavigationVie
 
                 break;
             }
+<<<<<<< HEAD
 
             case R.id.nav_clientes:{
               startActivity(new Intent(ProdutosActivity.this, ClientesActivity.class));
@@ -229,6 +230,8 @@ public class ProdutosActivity extends AppCompatActivity implements NavigationVie
             break;
           }
 
+=======
+>>>>>>> be2242f486b86534bec291a5e5c4f02d4fb4d90a
         }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -237,3 +240,9 @@ public class ProdutosActivity extends AppCompatActivity implements NavigationVie
 
         }
     }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> be2242f486b86534bec291a5e5c4f02d4fb4d90a
