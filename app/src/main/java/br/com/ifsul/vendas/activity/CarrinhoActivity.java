@@ -98,8 +98,6 @@ private void atualizaView(){
 }//fim atualiza
 
 
->>>>>>> be2242f486b86534bec291a5e5c4f02d4fb4d90a
-
 //Criação do Menu lateral (3 pontos)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -123,8 +121,6 @@ private void atualizaView(){
         return true;
     }
 
-
-<<<<<<< HEAD
 //Funções
 
     private void atualizaView(){
@@ -137,9 +133,6 @@ private void atualizaView(){
         tvTotalPedidoCarrinho.setText(NumberFormat.getCurrencyInstance().format(totalPedido));
 
     }
-=======
-
->>>>>>> be2242f486b86534bec291a5e5c4f02d4fb4d90a
 
     private void salvarPedido() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -184,12 +177,6 @@ private void atualizaView(){
         builder.show();
     }
 
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> be2242f486b86534bec291a5e5c4f02d4fb4d90a
     private void cancelaPedido() {
       AlertDialog.Builder builder = new AlertDialog.Builder(this);
       builder.setTitle("Atenção");
@@ -253,8 +240,6 @@ private void atualizaEstoque(int position){
         builder.setNegativeButton(R.string.alertdialog_nao, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-<<<<<<< HEAD
-=======
 
             }
         });
@@ -301,7 +286,7 @@ private void atualizaEstoque(int position){
         });
         builder.show();
     }
->>>>>>> be2242f486b86534bec291a5e5c4f02d4fb4d90a
+
 
             }
         });
