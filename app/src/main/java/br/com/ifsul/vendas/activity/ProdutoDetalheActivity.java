@@ -32,7 +32,7 @@ import br.com.ifsul.vendas.setup.AppSetup;
 public class ProdutoDetalheActivity extends AppCompatActivity {
 
     private static final String TAG = "produtoDetalheActivity";
-    private TextView tvNome, tvDescricao, tvValor, tvEstoque;
+    private TextView tvNome, tvDescricao, tvValor, tvEstoque,tvVendedor;
     private EditText etQuantidade;
     private ImageView imvFoto;
     private Button btVender;
@@ -48,6 +48,7 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
         tvNome = findViewById(R.id.tvNomeProduto);
         tvDescricao = findViewById(R.id.tvDerscricaoProduto);
         tvValor = findViewById(R.id.tvValorProduto);
+        tvVendedor = findViewById(R.id.tvVendedor);
         tvEstoque = findViewById(R.id.tvQuantidadeProduto);
         etQuantidade = findViewById(R.id.etQuantidade);
         imvFoto = findViewById(R.id.imvFoto);

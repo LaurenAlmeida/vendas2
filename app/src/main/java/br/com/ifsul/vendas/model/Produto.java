@@ -11,7 +11,7 @@ public class Produto implements Serializable{
     private boolean situacao;
     private String url_foto;
     private String key;
-
+    private int index;
     public Produto() {
     }
 
@@ -77,6 +77,14 @@ public class Produto implements Serializable{
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     @Override

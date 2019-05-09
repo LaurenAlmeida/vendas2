@@ -1,6 +1,7 @@
 package br.com.ifsul.vendas.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -63,7 +64,16 @@ public class CarrinhoActivity extends AppCompatActivity {
                 return true;
 
         } });
+
+        lvCarrinho.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                editarItem(position);
+            }
+        });
+
     }
+
 
 private void atualizaView(){
         lvCarrinho.setAdapter(new CarrinhoAdapter(CarrinhoActivity.this,AppSetup.carrinho));
@@ -76,44 +86,7 @@ private void atualizaView(){
 
 }//fim atualiza
 
-    private void excluiItem(final int position){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Atenção");
-        final ItemPedido itemPedido = AppSetup.carrinho.get(position);
-        final DatabaseReference myRef = database.getReference().child("vendas/produtos").child(itemPedido.getProduto().getKey()).child("quantidade");
-        builder.setMessage("Deseja excluir o pedido?");
-        builder.setPositiveButton("Sim",new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog,int which){
-                for (final ItemPedido itemPedido : AppSetup.carrinho){
-                    final DatabaseReference myRef = database.getReference().child("vendas/produtos").child(itemPedido.getProduto().getKey()).child("quantidade");
-                    myRef.addListenerForSingleValueEvent(new ValueEventListener(){
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Integer estoque = dataSnapshot.getValue(Integer.class);
-                            myRef.setValue(estoque + itemPedido.getQuantidade());
-                            atualizaEstoque(position);
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError error){
-                        }
-                    });
-                }
 
-                AppSetup.carrinho.remove(position);
-                atualizaView();
-                Toast.makeText(CarrinhoActivity.this,"Produto excluído",Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(CarrinhoActivity.this, "Operação cancelada.", Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.show();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -125,20 +98,7 @@ private void atualizaView(){
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuitem_salvar:{
-                Pedido pedido = new Pedido();
-                pedido.setCliente(AppSetup.cliente);
-                pedido.setItens(AppSetup.carrinho);
-                pedido.setDataCriacao(new Date());
-                pedido.setDataModificacao(new Date());
-                pedido.setEstado("aberto");
-                pedido.setFormaDePagamento("debito");
-                pedido.setSituacao(true);
-                pedido.setTotalPedido(totalPedido);
-                DatabaseReference myRef = database.getReference("vendas/pedidos");
-                String key = myRef.push().getKey();
-                pedido.setKey(key);
-                myRef.child(key).setValue(pedido);
-                Toast.makeText(this,"Pedido salvo",Toast.LENGTH_LONG).show();
+                salvarPedido();
                 break;
                 }
 
@@ -149,6 +109,53 @@ private void atualizaView(){
         }
         return true;
     }
+
+
+
+
+    private void salvarPedido() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //adiciona um título e uma mensagem
+        builder.setTitle(R.string.title_confirma);
+        builder.setMessage(R.string.message_confirma_salvar);
+        //adiciona os botões
+        builder.setPositiveButton(R.string.alertdialog_sim, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (AppSetup.carrinho == null) {
+                    Toast.makeText(CarrinhoActivity.this, getString(R.string.carrinho_vazio), Toast.LENGTH_SHORT).show();
+                } else {
+                    Date dataHoraAtual = new Date();
+
+                    Toast.makeText(CarrinhoActivity.this,"Pedido salvo",Toast.LENGTH_SHORT).show();
+
+                    Pedido pedido = new Pedido();
+                    pedido.setCliente(AppSetup.cliente);
+                    pedido.setItens(AppSetup.carrinho);
+                    pedido.setDataCriacao(new Date());
+                    pedido.setDataModificacao(new Date());
+                    pedido.setEstado("aberto");
+                    pedido.setFormaDePagamento("debito");
+                    pedido.setSituacao(true);
+                    pedido.setTotalPedido(totalPedido);
+                    DatabaseReference myRef = database.getReference("vendas/pedidos");
+                    String key = myRef.push().getKey();
+                    pedido.setKey(key);
+                    myRef.child(key).setValue(pedido);
+
+                }
+            }
+        });
+        builder.setNegativeButton(R.string.alertdialog_nao, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.show();
+    }
+
 
     private void cancelaPedido() {
       AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -195,6 +202,70 @@ private void atualizaEstoque(int position){
         }
 
 
+    private void editarItem(final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //adiciona um título e uma mensagem
+        builder.setTitle(R.string.title_confirma);
+        builder.setMessage(R.string.mensagens_edita);
+        //adiciona os botões
+        builder.setPositiveButton(R.string.alertdialog_sim, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                atualizaEstoque(position);
+                Intent intent = new Intent(CarrinhoActivity.this, ProdutoDetalheActivity.class);
+                intent.putExtra("position", AppSetup.produtos.get(position).getIndex());
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton(R.string.alertdialog_nao, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.show();
+    }
+
+
+    private void excluiItem(final int position){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Atenção");
+        final ItemPedido itemPedido = AppSetup.carrinho.get(position);
+        final DatabaseReference myRef = database.getReference().child("vendas/produtos").child(itemPedido.getProduto().getKey()).child("quantidade");
+        builder.setMessage("Deseja excluir o pedido?");
+        builder.setPositiveButton("Sim",new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog,int which){
+                for (final ItemPedido itemPedido : AppSetup.carrinho){
+                    final DatabaseReference myRef = database.getReference().child("vendas/produtos").child(itemPedido.getProduto().getKey()).child("quantidade");
+                    myRef.addListenerForSingleValueEvent(new ValueEventListener(){
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Integer estoque = dataSnapshot.getValue(Integer.class);
+                            myRef.setValue(estoque + itemPedido.getQuantidade());
+                            atualizaEstoque(position);
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError error){
+                        }
+                    });
+                }
+
+                AppSetup.carrinho.remove(position);
+                atualizaView();
+                Toast.makeText(CarrinhoActivity.this,"Produto excluído",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(CarrinhoActivity.this, "Operação cancelada.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
+    }
 
 
 
