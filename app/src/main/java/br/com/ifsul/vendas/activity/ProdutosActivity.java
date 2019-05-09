@@ -206,6 +206,29 @@ public class ProdutosActivity extends AppCompatActivity implements NavigationVie
 
                 break;
             }
+
+            case R.id.nav_clientes:{
+              startActivity(new Intent(ProdutosActivity.this, ClientesActivity.class));
+              break;
+            }
+
+          case R.id.nav_produto_administracao:{
+            break;
+          }
+
+          case R.id.nav_cliente_administracao:{
+            break;
+          }
+
+          case R.id.nav_sobre:{
+            break;
+          }
+          case R.id.nav_sair:{
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(ProdutosActivity.this, LoginActivity.class));
+            break;
+          }
+
         }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -214,6 +237,3 @@ public class ProdutosActivity extends AppCompatActivity implements NavigationVie
 
         }
     }
-
-
-

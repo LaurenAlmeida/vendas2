@@ -74,20 +74,7 @@ public class CarrinhoActivity extends AppCompatActivity {
 
     }
 
-
-private void atualizaView(){
-        lvCarrinho.setAdapter(new CarrinhoAdapter(CarrinhoActivity.this,AppSetup.carrinho));
-    Log.d("Texto",AppSetup.carrinho.toString());
-    totalPedido = 0.0;
-    for (ItemPedido itemPedido : AppSetup.carrinho){
-        totalPedido +=itemPedido.getTotalItem();
-    }
-    tvTotalPedidoCarrinho.setText(NumberFormat.getCurrencyInstance().format(totalPedido));
-
-}//fim atualiza
-
-
-
+//Criação do Menu lateral (3 pontos)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_activity_carrinho,menu);
@@ -111,7 +98,18 @@ private void atualizaView(){
     }
 
 
+//Funções
 
+    private void atualizaView(){
+            lvCarrinho.setAdapter(new CarrinhoAdapter(CarrinhoActivity.this,AppSetup.carrinho));
+        Log.d("Texto",AppSetup.carrinho.toString());
+        totalPedido = 0.0;
+        for (ItemPedido itemPedido : AppSetup.carrinho){
+            totalPedido +=itemPedido.getTotalItem();
+        }
+        tvTotalPedidoCarrinho.setText(NumberFormat.getCurrencyInstance().format(totalPedido));
+
+    }
 
     private void salvarPedido() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -155,6 +153,8 @@ private void atualizaView(){
 
         builder.show();
     }
+
+
 
 
     private void cancelaPedido() {
@@ -270,8 +270,3 @@ private void atualizaEstoque(int position){
 
 
 }
-
-
-
-
-
