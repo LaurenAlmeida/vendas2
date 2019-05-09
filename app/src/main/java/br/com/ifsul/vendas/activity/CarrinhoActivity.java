@@ -42,8 +42,6 @@ public class CarrinhoActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private TextView tvClienteCarrinho;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +62,6 @@ public class CarrinhoActivity extends AppCompatActivity {
                 return true;
 
         } });
-<<<<<<< HEAD
 
         lvCarrinho.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -74,7 +71,6 @@ public class CarrinhoActivity extends AppCompatActivity {
         });
 
     }
-=======
 
         lvCarrinho.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -122,7 +118,6 @@ private void atualizaView(){
     }
 
 //Funções
-
     private void atualizaView(){
             lvCarrinho.setAdapter(new CarrinhoAdapter(CarrinhoActivity.this,AppSetup.carrinho));
         Log.d("Texto",AppSetup.carrinho.toString());
@@ -213,7 +208,7 @@ private void atualizaView(){
 }
 
 
-private void atualizaEstoque(int position){
+    private void atualizaEstoque(int position){
         final DatabaseReference myRef = database.getReference("vendas/produtos");
         ItemPedido item = AppSetup.carrinho.get(position);
         myRef.child(item.getProduto().getKey()).child("quantidade").setValue(item.getQuantidade());
@@ -294,7 +289,6 @@ private void atualizaEstoque(int position){
         builder.show();
     }
 
-
     private void excluiItem(final int position){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Atenção");
@@ -333,7 +327,5 @@ private void atualizaEstoque(int position){
         });
         builder.show();
     }
-
-
 
 }
