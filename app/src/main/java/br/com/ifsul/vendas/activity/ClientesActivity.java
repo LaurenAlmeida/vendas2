@@ -82,7 +82,7 @@ public class ClientesActivity extends AppCompatActivity {
             //Título e mensagem
             builder.setTitle(R.string.title_selecionar_cliente);
             final Cliente cliente = clientes.get(position);
-            builder.setMessage(getString(R.string.message_nome_cliente) + ": "+cliente.getNome() + "" + cliente.getSobrenome() + "" + getString(R.string.message_cpf_cliente) + cliente.getCpf());
+            builder.setMessage(getString(R.string.message_nome_cliente) + " "+cliente.getNome() + "  " + cliente.getSobrenome() + "?");
             //Botões
             builder.setPositiveButton(R.string.alertdialog_sim,new DialogInterface.OnClickListener(){
               @Override

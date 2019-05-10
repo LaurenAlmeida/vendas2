@@ -103,6 +103,10 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
                             item.setTotalItem(quantidade * produto.getValor());
                             item.setSituacao(true);
                             AppSetup.carrinho.add(item);
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("vendas/produtos/" + produto.getKey() + "/quantidade");
+                            myRef.setValue(produto.getQuantidade() - quantidade);
+                            Toast.makeText(ProdutoDetalheActivity.this, getString(R.string.toast_adicionado_ao_carrinho), Toast.LENGTH_SHORT).show();
                             Toast.makeText(ProdutoDetalheActivity.this, getString(R.string.toast_adicionado_ao_carrinho), Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(ProdutoDetalheActivity.this, CarrinhoActivity.class));
                             finish();

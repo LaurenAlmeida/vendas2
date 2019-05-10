@@ -24,10 +24,10 @@
     <string name="Vender">Vender</string>
     <string name="Quantidade">Quantidade</string>
     <string name="email_vendedor">email_vendedor</string>
-    <string name="toast_cliente_selecionado">cliente_selecionado </string>
+    <string name="toast_cliente_selecionado">Cliente selecionado </string>
     <string name="alertdialog_sim">sim</string>
-    <string name="message_nome_cliente">nome_cliente</string>
-    <string name="title_selecionar_cliente">selecionar</string>
+    <string name="message_nome_cliente">Deseja selecionar    </string>
+    <string name="title_selecionar_cliente">Confirmar cliente</string>
     <string name="snack_operacao_cancelada">op_cancelada</string>
     <string name="alertdialog_nao">nao</string>
     <string name="message_cpf_cliente">cpf</string>
@@ -63,9 +63,11 @@
     <string name="menu_nav_cliente_admin">Clientes</string>
     <string name="menu_nav_sobre">Sobre</string>
     <string name="menu_nav_sair">Sair</string>
-    <string name="title_confirma">Mensagem</string>
-    <string name="mensagens_edita">editar_msg</string>
-    <string name="message_confirma_salvar">Salvar</string>
+    <string name="title_confirma">Confirmação</string>
+    <string name="mensagens_edita">Deseja editar o item pedido?</string>
+    <string name="message_confirma_salvar">Deseja salvar o pedido?</string>
     <string name="carrinho_vazio" />
+    <string name="confirma_excl">Deseja excluir o pedido?</string>
+    <string name="cancel_pedido">Deseja cancelar o pedido?</string>
 
 </resources>

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -129,7 +130,7 @@ public class ProdutosActivity extends AppCompatActivity implements NavigationVie
             public boolean onQueryTextChange(String newText) {
                 List<Produto> produtosTemp = new ArrayList<>();
                 for (Produto produto : AppSetup.produtos) {
-                    if (produto.getNome().contains(newText)) {
+                    if (produto.getNome().toLowerCase().contains(newText.toLowerCase())) {
                         produtosTemp.add(produto);
                     }
                 }
@@ -199,14 +200,14 @@ public class ProdutosActivity extends AppCompatActivity implements NavigationVie
         switch (menuItem.getItemId()) {
             case R.id.nav_carrinho: {
                 if (AppSetup.carrinho.isEmpty()) {
-                    Toast.makeText(this, "O carrinho esta vazio", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "O carrinho está vazio", Toast.LENGTH_SHORT).show();
                 } else {
                     startActivity(new Intent(ProdutosActivity.this, CarrinhoActivity.class));
                 }
 
                 break;
             }
-<<<<<<< HEAD
+
 
             case R.id.nav_clientes:{
               startActivity(new Intent(ProdutosActivity.this, ClientesActivity.class));
@@ -214,10 +215,12 @@ public class ProdutosActivity extends AppCompatActivity implements NavigationVie
             }
 
           case R.id.nav_produto_administracao:{
+              startActivity(new Intent(ProdutosActivity.this, ProdutosActivity.class));
             break;
           }
 
           case R.id.nav_cliente_administracao:{
+              startActivity(new Intent(ProdutosActivity.this, ClientesActivity.class));
             break;
           }
 
@@ -230,8 +233,6 @@ public class ProdutosActivity extends AppCompatActivity implements NavigationVie
             break;
           }
 
-=======
->>>>>>> be2242f486b86534bec291a5e5c4f02d4fb4d90a
         }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -240,9 +241,6 @@ public class ProdutosActivity extends AppCompatActivity implements NavigationVie
 
         }
     }
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> be2242f486b86534bec291a5e5c4f02d4fb4d90a

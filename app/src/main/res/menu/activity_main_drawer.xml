@@ -21,7 +21,7 @@
         <item android:title="Administração">
             <menu>
                 <item
-                    android:id="@+id/nav_produto_adminstracao"
+                    android:id="@+id/nav_produto_administracao"
                     android:icon="@drawable/ic_product_48"
                     android:title="@string/menu_nav_produto_admin" />
                 <item
