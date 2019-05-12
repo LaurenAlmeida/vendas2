@@ -31,7 +31,6 @@ import br.com.ifsul.vendas.model.ItemPedido;
 import br.com.ifsul.vendas.model.Pedido;
 import br.com.ifsul.vendas.setup.AppSetup;
 
-import static br.com.ifsul.vendas.setup.AppSetup.produtos;
 
 public class CarrinhoActivity extends AppCompatActivity {
 
@@ -39,7 +38,7 @@ public class CarrinhoActivity extends AppCompatActivity {
     private ListView lvCarrinho;
     private TextView tvTotalPedidoCarrinho;
     private Double totalPedido;
-    private FirebaseDatabase database;
+    private FirebaseDatabase database  = FirebaseDatabase.getInstance();
     private TextView tvClienteCarrinho;
 
     @Override
@@ -122,15 +121,15 @@ public class CarrinhoActivity extends AppCompatActivity {
                 if (AppSetup.carrinho == null) {
                     Toast.makeText(CarrinhoActivity.this, getString(R.string.carrinho_vazio), Toast.LENGTH_SHORT).show();
                 } else {
-                    Date dataHoraAtual = new Date();
+                    Date data = new Date();
 
                     Toast.makeText(CarrinhoActivity.this,"Pedido salvo",Toast.LENGTH_SHORT).show();
 
                     Pedido pedido = new Pedido();
                     pedido.setCliente(AppSetup.cliente);
                     pedido.setItens(AppSetup.carrinho);
-                    pedido.setDataCriacao(new Date());
-                    pedido.setDataModificacao(new Date());
+                    pedido.setDataCriacao(data);
+                    pedido.setDataModificacao(data);
                     pedido.setEstado("aberto");
                     pedido.setFormaDePagamento("debito");
                     pedido.setSituacao(true);
@@ -193,7 +192,7 @@ public class CarrinhoActivity extends AppCompatActivity {
 
 
     private void atualizaEstoque(int position){
-        DatabaseReference myRef = database.getReference("vendas/produtos" + AppSetup.carrinho.get(position).getProduto().getKey() + "/quantidade");
+        DatabaseReference myRef = database.getReference("vendas/produtos/" + AppSetup.carrinho.get(position).getProduto().getKey() + "/quantidade");
         myRef.setValue(AppSetup.carrinho.get(position).getQuantidade() + AppSetup.carrinho.get(position).getProduto().getQuantidade());
 
         AppSetup.carrinho.remove(position);
