@@ -234,39 +234,20 @@ public class CarrinhoActivity extends AppCompatActivity {
     private void excluir(final int position){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Atenção");
-        final ItemPedido itemPedido = AppSetup.carrinho.get(position);
-        DatabaseReference myRef = database.getReference().child("vendas/produtos").child(itemPedido.getProduto().getKey()).child("quantidade");
         builder.setMessage(R.string.confirma_excl);
         builder.setPositiveButton("Sim",new DialogInterface.OnClickListener(){
             @Override
-            public void onClick(DialogInterface dialog,int which){
-                for (final ItemPedido itemPedido : AppSetup.carrinho){
-                    final DatabaseReference myRef = database.getReference().child("vendas/produtos").child(itemPedido.getProduto().getKey()).child("quantidade");
-                    myRef.addListenerForSingleValueEvent(new ValueEventListener(){
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Integer estoque = dataSnapshot.getValue(Integer.class);
-                            myRef.setValue(estoque + itemPedido.getQuantidade());
-                            atualizaEstoque(position);
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError error){
-                        }
-                    });
-                }
-
-                AppSetup.carrinho.remove(position);
-                atualizaView();
-                Toast.makeText(CarrinhoActivity.this,"Produto excluído",Toast.LENGTH_SHORT).show();
+            public void onClick(DialogInterface dialog, int which) {
+                atualizaEstoque(position);
+            }
+        });
+        builder.setNegativeButton(R.string.alertdialog_nao, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
             }
         });
 
-        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(CarrinhoActivity.this, "Operação cancelada.", Toast.LENGTH_SHORT).show();
-            }
-        });
         builder.show();
     }
 
