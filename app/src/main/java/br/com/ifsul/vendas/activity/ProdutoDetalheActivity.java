@@ -1,13 +1,9 @@
 package br.com.ifsul.vendas.activity;
 
 import android.content.Intent;
-import android.nfc.Tag;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +34,6 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
     private Button btVender;
     private Produto produto;
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +52,7 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
         //obtém a position anexada como metadado
         Integer position = getIntent().getExtras().getInt("position");
         produto = AppSetup.produtos.get(position);
-        Log.d(TAG, ""+ produto.equals(AppSetup.produtos.get(position)));
+        Log.d(TAG, ""+ produto);
 
         //bindview
         tvNome.setText(AppSetup.produtos.get(position).getNome());

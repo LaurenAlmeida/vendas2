@@ -12,23 +12,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
-        <activity android:name=".activity.CarrinhoActivity" />
-        <activity android:name=".activity.ProdutoDetalheActivity" />
-        <activity android:name=".activity.ClientesActivity" />
-        <activity android:name=".activity.ProdutosActivity" android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activity.LoginActivity">
+        android:theme="@style/AppTheme"
+        android:screenOrientation = "portrait">
+        <activity android:name=".activity.SobreActivity" android:label="Sobre"></activity>
+        <activity android:name=".activity.ProdutoAdminActivity" android:label="Produto(Admin)" />
+        <activity android:name=".activity.CarrinhoActivity" android:label="Carrinho" />
+        <activity android:name=".activity.ProdutoDetalheActivity" android:label="Produto" />
+        <activity android:name=".activity.ClientesActivity" android:label="Clientes" android:parentActivityName=".activity.ProdutosActivity"/>
+        <activity
+            android:name=".activity.ProdutosActivity"
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+        <activity android:name=".activity.LoginActivity" android:label="Vendas">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.VIEW" />
 
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".barcode.BarcodeCaptureActivity"
             android:label="Leitor de código" />

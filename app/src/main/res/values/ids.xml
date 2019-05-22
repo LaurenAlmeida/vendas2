@@ -5,4 +5,14 @@
     <item name="tvTotalPedidoCarrinho" type="id" />
     <item name="tvClienteCarrinho" type="id" />
     <item name="pb_foto_produtos_adapter" type="id" />
+    <item name="etCodigoProduto" type="id"></item>
+    <item name="etNomeProdutoAdmin" type="id"></item>
+    <item name="etDescricaoProdutoAdmin" type="id"></item>
+    <item name="etValorProdutoAdmin" type="id"></item>
+    <item name="etQuantidadeProdutoAdmin" type="id"></item>
+    <item name="btInserirProdutoAdmin" type="id"></item>
+    <item name="imb_pesquisar" type="id"></item>
+    <item name="pb_foto_produto_admin" type="id"></item>
+    <item name="container_activity_produtoadmin" type="id"></item>
+    <item name="menuitem_limparform_admin" type="id"></item>
 </resources>

@@ -214,10 +214,10 @@ public class CarrinhoActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.alertdialog_sim, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                atualizaEstoque(position);
                 Intent intent = new Intent(CarrinhoActivity.this, ProdutoDetalheActivity.class);
                 intent.putExtra("position", AppSetup.carrinho.get(position).getProduto().getIndex());
                 startActivity(intent);
+                atualizaEstoque(position);
             }
         });
         builder.setNegativeButton(R.string.alertdialog_nao, new DialogInterface.OnClickListener() {

@@ -1,5 +1,7 @@
 package br.com.ifsul.vendas.model;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
 
 public class Produto implements Serializable{
@@ -79,10 +81,12 @@ public class Produto implements Serializable{
         this.key = key;
     }
 
+    @Exclude
     public int getIndex() {
         return index;
     }
 
+    @Exclude
     public void setIndex(int index) {
         this.index = index;
     }
