@@ -220,7 +220,7 @@ public class ProdutosActivity extends AppCompatActivity implements NavigationVie
           }
 
           case R.id.nav_cliente_administracao:{
-              startActivity(new Intent(ProdutosActivity.this, ClientesActivity.class));
+              startActivity(new Intent(ProdutosActivity.this, ClienteAdminActivity.class));
             break;
           }
 

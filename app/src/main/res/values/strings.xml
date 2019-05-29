@@ -87,5 +87,11 @@
     <string name="label_quantidade">label qnt</string>
     <string name="hint_quantidade_digite">hint quantidade digite</string>
     <string name="bt_salvar">bt_salvar</string>
+    <string name="toast_foto_cliente_upload_fail">toast_foto_cliente_upload_fail</string>
+    <string name="toast_cliente_salvo" />
+    <string name="toast_cliente_nao_cadastrado" />
+    <string name="foto_do_cliente">foto cliente</string>
+    <string name="hint_codigo_cliente">cd cliente</string>
+    <string name="hint_cpf_cliente">cpf cliente</string>
 
 </resources>

@@ -34,6 +34,7 @@ import br.com.ifsul.vendas.setup.AppSetup;
 
 public class CarrinhoActivity extends AppCompatActivity {
 
+
     private static final String TAG = "carrinhoActivity";
     private ListView lvCarrinho;
     private TextView tvTotalPedidoCarrinho;
@@ -45,6 +46,9 @@ public class CarrinhoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrinho);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         lvCarrinho = findViewById(R.id.lv_carrinho);
         tvTotalPedidoCarrinho = findViewById(R.id.tvTotalPedidoCarrinho);
 
@@ -92,7 +96,9 @@ public class CarrinhoActivity extends AppCompatActivity {
                   break;
                   }
 
-
+            case android.R.id.home:
+                finish();
+                break;
         }
         return true;
     }

@@ -15,4 +15,12 @@
     <item name="pb_foto_produto_admin" type="id"></item>
     <item name="container_activity_produtoadmin" type="id"></item>
     <item name="menuitem_limparform_admin" type="id"></item>
+    <item name="tvCodigoCliente" type="id" />
+    <item name="tvNomeCliente" type="id" />
+    <item name="tvSobrenomeCliente" type="id" />
+    <item name="tvCpfCliente" type="id" />
+    <item name="imvFotoCliente" type="id" />
+    <item name="btInserirClienteAdmin" type="id" />
+    <item name="tvSituacaoCliente" type="id" />
+    <item name="container_activity_clienteadmin" type="id" />
 </resources>

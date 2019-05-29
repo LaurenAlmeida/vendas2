@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ClienteAdminActivity">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="411dp"
+        android:layout_height="731dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <ImageView
+            android:id="@+id/imvFotoCliente"
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:contentDescription="@string/foto_do_cliente"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img_carrinho_de_compras" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/label_codigo_de_barras"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imvFoto" />
+
+        <TextView
+            android:id="@+id/tvCodigoCliente"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:ems="10"
+            android:hint="@string/hint_codigo_cliente"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/imb_pesquisar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/tvNomeCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/label_nome"
+            app:layout_constraintStart_toStartOf=""
+            app:layout_constraintTop_toBottomOf="" />
+
+        <TextView
+            android:id="@+id/tvSobrenomeCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/label_descricao"
+            app:layout_constraintStart_toStartOf=""
+            app:layout_constraintTop_toBottomOf="" />
+
+        <TextView
+            android:id="@+id/tvCpfCliente"
+            android:layout_width="0dp"
+            android:layout_height="197dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            android:hint="@string/hint_cpf_cliente"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+
+        <Button
+            android:id="@+id/btInserirClienteAdmin"
+            android:layout_width="142dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorAccent"
+            android:text="@string/bt_salvar"
+            android:textColor="@color/font_white"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.363"
+            app:layout_constraintStart_toEndOf="@+id/etQuantidadeProdutoAdmin"
+            app:layout_constraintTop_toTopOf="@+id/etValorProdutoAdmin"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageButton
+            android:id="@+id/imb_pesquisar"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:background="@color/colorAccent"
+            android:contentDescription="@string/menu_pesquisar"
+            app:layout_constraintBottom_toBottomOf="@+id/etCodigoProduto"
+            app:layout_constraintEnd_toEndOf="@+id/etNomeProdutoAdmin"
+            app:layout_constraintStart_toEndOf="@+id/etCodigoProduto"
+            app:layout_constraintTop_toTopOf="@+id/etCodigoProduto"
+            app:srcCompat="@drawable/ic_search_white_24dp" />
+
+        <ProgressBar
+            android:id="@+id/pb_foto_cliente_admin"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/imvFotoCliente"
+            app:layout_constraintEnd_toEndOf="@+id/imvFotoCliente"
+            app:layout_constraintHorizontal_bias="0.647"
+            app:layout_constraintStart_toStartOf="@+id/imvFotoCliente"
+            app:layout_constraintTop_toTopOf="@+id/imvFotoCliente"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+
+</android.support.constraint.ConstraintLayout>

@@ -28,6 +28,7 @@ import br.com.ifsul.vendas.R;
 import br.com.ifsul.vendas.model.User;
 import br.com.ifsul.vendas.setup.AppSetup;
 
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "loginActivity";
@@ -105,7 +106,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signin(String email, String password){
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -128,7 +130,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void setUserSessao(final FirebaseUser firebaseUser) {
 
-        FirebaseDatabase.getInstance().getReference().child("vendas/users").child(firebaseUser.getUid()).addListenerForSingleValueEvent (new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference()
+                .child("vendas/users").child(firebaseUser.getUid())
+                .addListenerForSingleValueEvent (new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         AppSetup.user = dataSnapshot.getValue(User.class);
@@ -144,4 +148,3 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 }
-
