@@ -93,5 +93,7 @@
     <string name="foto_do_cliente">foto cliente</string>
     <string name="hint_codigo_cliente">cd cliente</string>
     <string name="hint_cpf_cliente">cpf cliente</string>
+    <string name="input_error_invalido" />
+    <string name="snack_insira_email" />
 
 </resources>

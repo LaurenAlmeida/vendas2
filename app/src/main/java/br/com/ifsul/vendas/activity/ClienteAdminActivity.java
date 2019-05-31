@@ -1,14 +1,15 @@
 package br.com.ifsul.vendas.activity;
 
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +19,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -41,14 +41,16 @@ import java.io.FileNotFoundException;
 import br.com.ifsul.vendas.R;
 import br.com.ifsul.vendas.barcode.BarcodeCaptureActivity;
 import br.com.ifsul.vendas.model.Cliente;
+import br.com.ifsul.vendas.model.Produto;
 import br.com.ifsul.vendas.setup.AppSetup;
+
 
 public class ClienteAdminActivity extends AppCompatActivity {
 
     private static final String TAG = "clienteAdminActivity";
     private static final int RC_BARCODE_CAPTURE = 1, RC_GALERIA_IMAGE_PICK = 2;
-    private TextView tvCodigoCliente, tvNome, tvSobrenome, tvCpfCliente;
-    private Button btSalvar;
+    private EditText etCodigoCliente, etNomeCliente, etCpfCliente, etSobrenomeCliente;
+    private Button btSalvarCliente;
     private ImageView imvFotoCliente;
     private Cliente cliente;
     private byte[] fotoCliente = null; //foto do produto
@@ -74,15 +76,14 @@ public class ClienteAdminActivity extends AppCompatActivity {
         cliente = new Cliente();
 
         //mapeia os componentes da UI
-        tvCodigoCliente = findViewById(R.id.tvCodigoCliente);
-        tvNome = findViewById(R.id.tvNomeCliente);
-        tvSobrenome = findViewById(R.id.tvSobrenomeCliente);
-        tvCpfCliente = findViewById(R.id.tvCpfCliente);
-       // tvSituacaoCliente = findViewById(R.id.tvSituacaoCliente);
-        btSalvar = findViewById(R.id.btInserirClienteAdmin);
+        etCodigoCliente = findViewById(R.id.etCodigoCliente);
+        etNomeCliente = findViewById(R.id.etNomeCliente);
+        etSobrenomeCliente = findViewById(R.id.etSobrenomeCliente);
+        etCpfCliente = findViewById(R.id.etCpfCliente);
+        btSalvarCliente = findViewById(R.id.btSalvarCliente);
         imvFotoCliente = findViewById(R.id.imvFotoCliente);
         imbPesquisar = findViewById(R.id.imb_pesquisar);
-        pbFoto = findViewById(R.id.pb_foto_produto_admin);
+        pbFoto = findViewById(R.id.pb_foto_cliente_adm);
 
         //busca a foto do produto na galeria
         imvFotoCliente.setOnClickListener(new View.OnClickListener() {
@@ -101,32 +102,32 @@ public class ClienteAdminActivity extends AppCompatActivity {
         imbPesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!tvCodigoCliente.getText().toString().isEmpty()){
-                    buscarNoBanco(Long.valueOf(tvCodigoCliente.getText().toString()));
+                if(!etCodigoCliente.getText().toString().isEmpty()){
+                    buscarNoBanco(Long.valueOf(etCodigoCliente.getText().toString()));
                 }
             }
         });
 
         //salva o produto no database
-        btSalvar.setOnClickListener(new View.OnClickListener() {
+        btSalvarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!tvCodigoCliente.getText().toString().isEmpty() &&
-                        !tvNome.getText().toString().isEmpty() &&
-                        !tvSobrenome.getText().toString().isEmpty() &&
-                        !tvCpfCliente.getText().toString().isEmpty()){
+                if(!etCodigoCliente.getText().toString().isEmpty() &&
+                        !etNomeCliente.getText().toString().isEmpty() &&
+                        !etSobrenomeCliente.getText().toString().isEmpty() &&
+                        !etCpfCliente.getText().toString().isEmpty()){
                     //prepara o objeto de modelo
-                    Long codigoDeBarras = Long.valueOf(tvCodigoCliente.getText().toString());
+                    Long codigoDeBarras = Long.valueOf(etCodigoCliente.getText().toString());
                     cliente.setCodigoDeBarras(codigoDeBarras);
-                    cliente.setNome(tvNome.getText().toString());
-                    cliente.setSobrenome(tvSobrenome.getText().toString());
-                    cliente.setCpf(tvCpfCliente.getText().toString());
+                    cliente.setNome(etNomeCliente.getText().toString());
+                    cliente.setSobrenome(etSobrenomeCliente.getText().toString());
+                    cliente.setCpf(etCpfCliente.getText().toString());
                     cliente.setSituacao(true);
                     Log.d(TAG, "Cliente a ser salvo: " + cliente);
                     if(fotoCliente != null){
                         uploadFotoDoCliente();
                     }else{
-                        salvarCliente();
+                       salvarCliente();
                     }
                 }else{
                     Snackbar.make(findViewById(R.id.container_activity_clienteadmin), R.string.snack_preencher_todos_campos, Snackbar.LENGTH_LONG).show();
@@ -139,12 +140,12 @@ public class ClienteAdminActivity extends AppCompatActivity {
 
     private void uploadFotoDoCliente() {
         //faz o upload da foto do produto no firebase storage
-        StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("images_clientes/clientes/" + cliente.getCodigoDeBarras() + ".jpeg");
+        StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("images/clientes/" + cliente.getCodigoDeBarras() + ".jpeg");
         UploadTask uploadTask = mStorageRef.putBytes(fotoCliente);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(ClienteAdminActivity.this, getString(R.string.toast_foto_cliente_upload_fail), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ClienteAdminActivity.this, getString(R.string.toast_foto_produto_upload_fail), Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "falha no upload " + exception.getMessage());
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -185,7 +186,7 @@ public class ClienteAdminActivity extends AppCompatActivity {
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Snackbar.make(findViewById(R.id.container_activity_produtoadmin), R.string.snack_operacao_falhou, Snackbar.LENGTH_LONG).show();
+                                        Snackbar.make(findViewById(R.id.container_activity_clienteadmin), R.string.snack_operacao_falhou, Snackbar.LENGTH_LONG).show();
                                         dismissWait();
                                     }
                                 });
@@ -224,13 +225,12 @@ public class ClienteAdminActivity extends AppCompatActivity {
 
     private void limparForm() {
         cliente = new Cliente();
-        tvCodigoCliente.setEnabled(true);
+        etCodigoCliente.setEnabled(true);
         fotoCliente = null;
-        tvCodigoCliente.setText(null);
-        tvNome.setText(null);
-        tvSobrenome.setText(null);
-        tvSobrenome.setText(null);
-        tvCpfCliente.setText(null);
+        etCodigoCliente.setText(null);
+        etNomeCliente.setText(null);
+        etSobrenomeCliente.setText(null);
+        etCpfCliente.setText(null);
         imvFotoCliente.setImageResource(R.drawable.img_cliente_icon_524x524);
     }
 
@@ -250,7 +250,7 @@ public class ClienteAdminActivity extends AppCompatActivity {
                 intent.putExtra(BarcodeCaptureActivity.UseFlash, false); //true liga a lanterna (fash)
                 startActivityForResult(intent, RC_BARCODE_CAPTURE);
                 break;
-            case R.id.menuitem_limparform_admin:
+            case R.id.menuitem_limparform_cliente:
                 limparForm();
                 break;
             case android.R.id.home:
@@ -268,7 +268,7 @@ public class ClienteAdminActivity extends AppCompatActivity {
                     Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
                     //Toast.makeText(this, barcode.displayValue, Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Barcode read: " + barcode.displayValue);
-                    tvCodigoCliente.setText(barcode.displayValue);
+                    etCodigoCliente.setText(barcode.displayValue);
                     buscarNoBanco(Long.valueOf(barcode.displayValue));
                 }
             } else {
@@ -320,24 +320,15 @@ public class ClienteAdminActivity extends AppCompatActivity {
     }
 
     private void carregarView() {
-        cliente = new Cliente();
-        tvCodigoCliente.setEnabled(true);
-        fotoCliente = null;
-        tvCodigoCliente.setText(null);
-        tvNome.setText(null);
-        tvSobrenome.setText(null);
-        tvSobrenome.setText(null);
-        tvCpfCliente.setText(null);
-        imvFotoCliente.setImageResource(R.drawable.img_cliente_icon_524x524);
-        tvCodigoCliente.setText(cliente.getCodigoDeBarras().toString());
-        tvCodigoCliente.setEnabled(false);
-        tvNome.setText(cliente.getNome());
-        tvSobrenome.setText(cliente.getSobrenome());
-        tvCpfCliente.setText(cliente.getCpf());
+        etCodigoCliente.setText(cliente.getCodigoDeBarras().toString());
+        etCodigoCliente.setEnabled(false);
+        etNomeCliente.setText(cliente.getNome());
+        etSobrenomeCliente.setText(cliente.getSobrenome());
+        etCpfCliente.setText(cliente.getCpf().toString());
         if(cliente.getUrl_foto() != ""){
             pbFoto.setVisibility(ProgressBar.VISIBLE);
             if(AppSetup.cacheClientes.get(cliente.getKey()) == null){
-                StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("images_clientes/clientes/" + cliente.getCodigoDeBarras() + ".jpeg");
+                StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("images/clientes/" + cliente.getCodigoDeBarras() + ".jpeg");
                 final long ONE_MEGABYTE = 1024 * 1024;
                 mStorageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                     @Override
@@ -350,7 +341,7 @@ public class ClienteAdminActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
                         pbFoto.setVisibility(ProgressBar.INVISIBLE);
-                        Log.d(TAG, "Download da foto do cliente falhou: " + "images_clientes/clientes/" + cliente.getCodigoDeBarras() + ".jpeg");
+                        Log.d(TAG, "Download da foto do cliente falhou: " + "images/clientes" + cliente.getCodigoDeBarras() + ".jpeg");
                     }
                 });
             }else{
@@ -390,6 +381,3 @@ public class ClienteAdminActivity extends AppCompatActivity {
     }
 
 }//fim classe
-
-
-

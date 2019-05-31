@@ -141,21 +141,6 @@
                 app:layout_constraintStart_toStartOf="@+id/etValorProdutoAdmin"
                 app:layout_constraintTop_toBottomOf="@+id/etValorProdutoAdmin" />
 
-            <EditText
-                android:id="@+id/etQuantidadeProdutoAdmin"
-                android:layout_width="175dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:ems="10"
-                android:hint="@string/hint_quantidade_digite"
-                android:inputType="numberSigned"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <Button
                 android:id="@+id/btInserirProdutoAdmin"
