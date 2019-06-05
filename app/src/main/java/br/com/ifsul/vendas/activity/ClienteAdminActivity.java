@@ -41,7 +41,6 @@ import java.io.FileNotFoundException;
 import br.com.ifsul.vendas.R;
 import br.com.ifsul.vendas.barcode.BarcodeCaptureActivity;
 import br.com.ifsul.vendas.model.Cliente;
-import br.com.ifsul.vendas.model.Produto;
 import br.com.ifsul.vendas.setup.AppSetup;
 
 

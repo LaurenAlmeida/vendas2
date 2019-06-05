@@ -95,5 +95,10 @@
     <string name="hint_cpf_cliente">cpf cliente</string>
     <string name="input_error_invalido" />
     <string name="snack_insira_email" />
+    <string name="label_cpf_cliente">Digite seu CPF</string>
+    <string name="label_nome_cliente">Digite seu nome</string>
+    <string name="hint_nome_cliente">nome do cliente</string>
+    <string name="label_sobrenome_cliente">Digite seu Sobrenome</string>
+    <string name="hint_sobrenome_cliente">sobrenome do cliente</string>
 
 </resources>

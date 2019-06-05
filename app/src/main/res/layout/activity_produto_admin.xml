@@ -69,7 +69,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/etCodigoProduto" />
 
             <EditText
-                android:id="@+id/etNomeProdutoAdmin"
+                android:id="@+id/etNomeCliente"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -84,16 +84,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/TextView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/label_descricao"
-                app:layout_constraintStart_toStartOf="@+id/etNomeProdutoAdmin"
-                app:layout_constraintTop_toBottomOf="@+id/etNomeProdutoAdmin" />
+                app:layout_constraintStart_toStartOf="@+id/etNomeCliente"
+                app:layout_constraintTop_toBottomOf="@+id/etNomeCliente" />
 
             <EditText
-                android:id="@+id/etDescricaoProdutoAdmin"
+                android:id="@+id/etSobrenomeCliente"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -105,7 +105,7 @@
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintTop_toBottomOf="@+id/TextView3" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -113,8 +113,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/label_valor"
-                app:layout_constraintStart_toStartOf="@+id/etDescricaoProdutoAdmin"
-                app:layout_constraintTop_toBottomOf="@+id/etDescricaoProdutoAdmin" />
+                app:layout_constraintStart_toStartOf="@+id/etSobrenomeCliente"
+                app:layout_constraintTop_toBottomOf="@+id/etSobrenomeCliente" />
 
             <EditText
                 android:id="@+id/etValorProdutoAdmin"
@@ -172,7 +172,7 @@
                 android:background="@color/colorAccent"
                 android:contentDescription="@string/menu_pesquisar"
                 app:layout_constraintBottom_toBottomOf="@+id/etCodigoProduto"
-                app:layout_constraintEnd_toEndOf="@+id/etNomeProdutoAdmin"
+                app:layout_constraintEnd_toEndOf="@+id/etNomeCliente"
                 app:layout_constraintStart_toEndOf="@+id/etCodigoProduto"
                 app:layout_constraintTop_toTopOf="@+id/etCodigoProduto"
                 app:srcCompat="@drawable/ic_search_white_24dp" />

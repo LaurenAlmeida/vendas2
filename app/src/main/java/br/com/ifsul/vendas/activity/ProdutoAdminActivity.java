@@ -76,8 +76,8 @@ public class ProdutoAdminActivity extends AppCompatActivity {
 
         //mapeia os componentes da UI
         etCodigoDeBarras = findViewById(R.id.etCodigoProduto);
-        etNome = findViewById(R.id.etNomeProdutoAdmin);
-        etDescricao = findViewById(R.id.etDescricaoProdutoAdmin);
+        etNome = findViewById(R.id.etNomeCliente);
+        etDescricao = findViewById(R.id.etSobrenomeCliente);
         etValor = findViewById(R.id.etValorProdutoAdmin);
         etQuantidade = findViewById(R.id.etQuantidadeProdutoAdmin);
         btSalvar = findViewById(R.id.btInserirProdutoAdmin);
