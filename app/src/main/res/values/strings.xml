@@ -100,5 +100,10 @@
     <string name="hint_nome_cliente">nome do cliente</string>
     <string name="label_sobrenome_cliente">Digite seu Sobrenome</string>
     <string name="hint_sobrenome_cliente">sobrenome do cliente</string>
+    <string name="label_cd_cliente">Codigo do cliente</string>
+    <string name="hint_nome">Nome</string>
+    <string name="hint_sobrenome">sobrenome</string>
+    <string name="hint_cpf">cpf</string>
+    <string name="bt_ver_pedidos">bt_pedidos</string>
 
 </resources>

@@ -75,7 +75,7 @@ public class ProdutoAdminActivity extends AppCompatActivity {
         produto = new Produto();
 
         //mapeia os componentes da UI
-        etCodigoDeBarras = findViewById(R.id.etCodigoProduto);
+        etCodigoDeBarras = findViewById(R.id.etCpfCliente);
         etNome = findViewById(R.id.etNomeCliente);
         etDescricao = findViewById(R.id.etSobrenomeCliente);
         etValor = findViewById(R.id.etValorProdutoAdmin);
@@ -109,7 +109,7 @@ public class ProdutoAdminActivity extends AppCompatActivity {
         });
 
         //salva o produto no database
-        btSalvar.setOnClickListener(new View.OnClickListener() {
+        btSalvar.setOnClickListener(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!etCodigoDeBarras.getText().toString().isEmpty() &&
