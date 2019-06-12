@@ -82,7 +82,7 @@ public class ClienteAdminActivity extends AppCompatActivity {
         btSalvarCliente = findViewById(R.id.btSalvarCliente);
         imvFotoCliente = findViewById(R.id.imvFotoCliente);
         imbPesquisar = findViewById(R.id.imb_pesquisar);
-        pbFoto = findViewById(R.id.pb_foto_cliente_adm);
+        pbFoto = findViewById(R.id.pb_foto_cliente_admin);
 
         //busca a foto do produto na galeria
         imvFotoCliente.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +122,7 @@ public class ClienteAdminActivity extends AppCompatActivity {
                     cliente.setSobrenome(etSobrenomeCliente.getText().toString());
                     cliente.setCpf(etCpfCliente.getText().toString());
                     cliente.setSituacao(true);
+                    cliente.setUrl_foto("");
                     Log.d(TAG, "Cliente a ser salvo: " + cliente);
                     if(fotoCliente != null){
                         uploadFotoDoCliente();
@@ -324,7 +325,7 @@ public class ClienteAdminActivity extends AppCompatActivity {
         etNomeCliente.setText(cliente.getNome());
         etSobrenomeCliente.setText(cliente.getSobrenome());
         etCpfCliente.setText(cliente.getCpf().toString());
-        if(cliente.getUrl_foto() != ""){
+        if(cliente.getUrl_foto().equals("")){
             pbFoto.setVisibility(ProgressBar.VISIBLE);
             if(AppSetup.cacheClientes.get(cliente.getKey()) == null){
                 StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("images/clientes/" + cliente.getCodigoDeBarras() + ".jpeg");

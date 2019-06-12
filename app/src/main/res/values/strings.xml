@@ -105,5 +105,6 @@
     <string name="hint_sobrenome">sobrenome</string>
     <string name="hint_cpf">cpf</string>
     <string name="bt_ver_pedidos">bt_pedidos</string>
+    <string name="tvSobre">Aplicativo desenvolvido no 5 semestre do CSTSI,na disciplina de PDM</string>
 
 </resources>

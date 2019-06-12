@@ -5,6 +5,7 @@
     <item name="tvTotalPedidoCarrinho" type="id" />
     <item name="tvClienteCarrinho" type="id" />
     <item name="pb_foto_produtos_adapter" type="id" />
+    <item name="pb_foto_clientes_adapter" type="id" />
     <item name="etCodigoProduto" type="id"></item>
     <item name="etNomeProdutoAdmin" type="id"></item>
     <item name="etDescricaoProdutoAdmin" type="id"></item>

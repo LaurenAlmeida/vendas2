@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = etEmail.getText().toString();
                 String senha = etSenha.getText().toString();
                 if(!email.isEmpty() && !senha.isEmpty()) {
+
                     signin(email,senha);
                 }else{
                     Snackbar.make(findViewById(R.id.container_activity_login), "Preencha todos os campos.", Snackbar.LENGTH_LONG).show();
@@ -63,21 +64,21 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //trata o evento onClick do button
-        findViewById(R.id.bt_sigup).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = etEmail.getText().toString();
-                String senha = etSenha.getText().toString();
-                if(!email.isEmpty() && !senha.isEmpty()) {
-                    signup(email,senha);
-                }else{
-                    Snackbar.make(findViewById(R.id.container_activity_login), "Preencha todos os campos.", Snackbar.LENGTH_LONG).show();
-                    etEmail.setError(getString(R.string.input_error_invalido));
-                    etSenha.setError(getString(R.string.input_error_invalido));
-                }
-            }
-        });
+//        //trata o evento onClick do button
+//        findViewById(R.id.bt_sigup).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String email = etEmail.getText().toString();
+//                String senha = etSenha.getText().toString();
+//                if(!email.isEmpty() && !senha.isEmpty()) {
+//                    signup(email,senha);
+//                }else{
+//                    Snackbar.make(findViewById(R.id.container_activity_login), "Preencha todos os campos.", Snackbar.LENGTH_LONG).show();
+//                    etEmail.setError(getString(R.string.input_error_invalido));
+//                    etSenha.setError(getString(R.string.input_error_invalido));
+//                }
+//            }
+//        });
 
         //trata o evento onClick do textview (reset de senha)
         findViewById(R.id.tvEsqueceuSenha_tela_login).setOnClickListener(new View.OnClickListener() {

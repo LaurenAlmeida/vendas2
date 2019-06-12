@@ -48,6 +48,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_carrinho);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         lvCarrinho = findViewById(R.id.lv_carrinho);
         tvTotalPedidoCarrinho = findViewById(R.id.tvTotalPedidoCarrinho);
@@ -61,7 +62,7 @@ public class CarrinhoActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 excluir(position);
-                return false;
+                return true;
             }
         });
 
@@ -144,6 +145,9 @@ public class CarrinhoActivity extends AppCompatActivity {
                     String key = myRef.push().getKey();
                     pedido.setKey(key);
                     myRef.child(key).setValue(pedido);
+                    AppSetup.carrinho.clear();
+                    AppSetup.cliente = null;
+                    startActivity(new Intent(CarrinhoActivity.this, ProdutosActivity.class));
 
                 }
             }
@@ -185,6 +189,7 @@ public class CarrinhoActivity extends AppCompatActivity {
           Toast.makeText(CarrinhoActivity.this,"Pedido cancelado",Toast.LENGTH_SHORT).show();
           AppSetup.carrinho.clear();
           AppSetup.cliente = null;
+          startActivity(new Intent(CarrinhoActivity.this, ProdutosActivity.class));
           finish();
         }
       });
@@ -245,6 +250,7 @@ public class CarrinhoActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 atualizaEstoque(position);
+
             }
         });
         builder.setNegativeButton(R.string.alertdialog_nao, new DialogInterface.OnClickListener() {
@@ -255,6 +261,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         });
 
         builder.show();
+
     }
 
 }

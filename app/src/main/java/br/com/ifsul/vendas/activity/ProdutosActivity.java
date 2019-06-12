@@ -225,6 +225,7 @@ public class ProdutosActivity extends AppCompatActivity implements NavigationVie
           }
 
           case R.id.nav_sobre:{
+              startActivity(new Intent(ProdutosActivity.this, SobreActivity.class));
             break;
           }
           case R.id.nav_sair:{

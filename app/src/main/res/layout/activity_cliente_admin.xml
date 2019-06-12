@@ -85,7 +85,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/tvCodigoDeBarrasClienteTelaAdmin"
+        android:id="@+id/tvCodigoCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -113,7 +113,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imvFotoCliente" />
 
     <ImageButton
-        android:id="@+id/imbPesquisar_clienteAdmin"
+        android:id="@+id/imb_pesquisar"
         android:layout_width="51dp"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
