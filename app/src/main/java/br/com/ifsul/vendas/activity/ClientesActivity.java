@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,6 +41,8 @@ public class ClientesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         lvClientes = findViewById(R.id.lv_clientes);
         lvClientes.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -138,9 +141,15 @@ public class ClientesActivity extends AppCompatActivity {
          case R.id.menuitem_barcode:
          Toast.makeText(this,"Ler código de barras",Toast.LENGTH_SHORT).show();
          break;
+         case android.R.id.home:
+               finish();
+               break;
        }
+
        return true;
      }
+
+
 
 
 }
