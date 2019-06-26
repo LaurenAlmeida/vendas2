@@ -181,6 +181,7 @@ public class ClienteAdminActivity extends AppCompatActivity {
                                         Toast.makeText(ClienteAdminActivity.this, getString(R.string.toast_cliente_salvo), Toast.LENGTH_SHORT).show();
                                         limparForm();
                                         dismissWait();
+                                        startActivity(new Intent(ClienteAdminActivity.this, ClientesActivity.class));
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {

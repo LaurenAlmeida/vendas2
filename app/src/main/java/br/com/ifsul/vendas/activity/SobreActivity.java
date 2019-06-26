@@ -24,8 +24,6 @@ public class SobreActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.home) {
             finish();
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 

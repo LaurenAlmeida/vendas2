@@ -28,6 +28,8 @@ import br.com.ifsul.vendas.R;
 import br.com.ifsul.vendas.model.User;
 import br.com.ifsul.vendas.setup.AppSetup;
 
+import static br.com.ifsul.vendas.setup.AppSetup.user;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "loginActivity";
@@ -39,10 +41,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         //obtém a instância do serviço de autenticação
         mAuth = FirebaseAuth.getInstance();
         AppSetup.mAuth = mAuth;
-
         //mapeia os campos de input
         etEmail = findViewById(R.id.etEmail);
         etSenha = findViewById(R.id.etSenha);
@@ -62,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
                     etSenha.setError(getString(R.string.input_error_invalido));
                 }
             }
+
+
         });
 
 //        //trata o evento onClick do button
@@ -202,8 +206,8 @@ public class LoginActivity extends AppCompatActivity {
                 .addListenerForSingleValueEvent (new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        AppSetup.user = dataSnapshot.getValue(User.class);
-                        AppSetup.user.setFirebaseUser(firebaseUser);
+                        user = dataSnapshot.getValue(User.class);
+                        user.setFirebaseUser(firebaseUser);
                         startActivity(new Intent(LoginActivity.this, ProdutosActivity.class));
                         finish();
                     }

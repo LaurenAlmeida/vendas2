@@ -18,7 +18,7 @@
         </item>
     </group>
     <group android:checkableBehavior="single">
-        <item android:title="Administração" android:visible="false">
+        <item android:title="Administração" android:visible="false" android:id="@+id/menu_nav_adm">
             <menu>
                 <item
                     android:id="@+id/nav_produto_administracao"
@@ -28,6 +28,7 @@
                     android:id="@+id/nav_cliente_administracao"
                     android:icon="@drawable/ic_contacts_48"
                     android:title="@string/menu_nav_cliente_admin" />
+
             </menu>
         </item>
     </group>

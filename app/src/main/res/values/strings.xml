@@ -106,5 +106,10 @@
     <string name="hint_cpf">cpf</string>
     <string name="bt_ver_pedidos">bt_pedidos</string>
     <string name="tvSobre">Aplicativo desenvolvido no 5 semestre do CSTSI,na disciplina de PDM</string>
+    <string name="menu_user_adm">Cadastro de usuário</string>
+    <string name="tv_funcao">funcao</string>
+    <string name="etFuncao">EtFuncao</string>
+    <string name="btCadastrarUser">Cadastra usuário</string>
+    <string name="hint_funcao">funcao</string>
 
 </resources>

@@ -75,9 +75,9 @@ public class ProdutoAdminActivity extends AppCompatActivity {
         produto = new Produto();
 
         //mapeia os componentes da UI
-        etCodigoDeBarras = findViewById(R.id.etCpfCliente);
-        etNome = findViewById(R.id.etNomeCliente);
-        etDescricao = findViewById(R.id.etSobrenomeCliente);
+        etCodigoDeBarras = findViewById(R.id.etCodigoProduto);
+        etNome = findViewById(R.id.etNomeProdutoAdmin);
+        etDescricao = findViewById(R.id.etDescricaoProdutoAdmin);
         etValor = findViewById(R.id.etValorProdutoAdmin);
         etQuantidade = findViewById(R.id.etQuantidadeProdutoAdmin);
         btSalvar = findViewById(R.id.btInserirProdutoAdmin);
@@ -184,6 +184,7 @@ public class ProdutoAdminActivity extends AppCompatActivity {
                                         Toast.makeText(ProdutoAdminActivity.this, getString(R.string.toast_produto_salvo), Toast.LENGTH_SHORT).show();
                                         limparForm();
                                         dismissWait();
+                                        startActivity(new Intent(ProdutoAdminActivity.this, ProdutosActivity.class));
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
