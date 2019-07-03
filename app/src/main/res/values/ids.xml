@@ -32,4 +32,5 @@
     <item name="btSalvarCliente" type="id" />
     <item name="pb_foto_cliente_adm" type="id" />
     <item name="menuitem_limparform_cliente" type="id" />
+    <item name="lv_pedidos" type="id" />
 </resources>

@@ -37,6 +37,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.ifsul.vendas.R;
 import br.com.ifsul.vendas.barcode.BarcodeCaptureActivity;
@@ -49,7 +51,7 @@ public class ClienteAdminActivity extends AppCompatActivity {
     private static final String TAG = "clienteAdminActivity";
     private static final int RC_BARCODE_CAPTURE = 1, RC_GALERIA_IMAGE_PICK = 2;
     private EditText etCodigoCliente, etNomeCliente, etCpfCliente, etSobrenomeCliente;
-    private Button btSalvarCliente;
+    private Button btSalvarCliente,bt_verPedidos;
     private ImageView imvFotoCliente;
     private Cliente cliente;
     private byte[] fotoCliente = null; //foto do produto
@@ -80,6 +82,7 @@ public class ClienteAdminActivity extends AppCompatActivity {
         etSobrenomeCliente = findViewById(R.id.etSobrenomeCliente);
         etCpfCliente = findViewById(R.id.etCpfCliente);
         btSalvarCliente = findViewById(R.id.btSalvarCliente);
+        bt_verPedidos = findViewById(R.id.bt_verPedidos);
         imvFotoCliente = findViewById(R.id.imvFotoCliente);
         imbPesquisar = findViewById(R.id.imb_pesquisar);
         pbFoto = findViewById(R.id.pb_foto_cliente_admin);
@@ -122,6 +125,9 @@ public class ClienteAdminActivity extends AppCompatActivity {
                     cliente.setSobrenome(etSobrenomeCliente.getText().toString());
                     cliente.setCpf(etCpfCliente.getText().toString());
                     cliente.setSituacao(true);
+                    List<String> pedidos = new ArrayList<>();
+                    pedidos.add(" ");
+                    cliente.setPedidos(pedidos);
                     cliente.setUrl_foto("");
                     Log.d(TAG, "Cliente a ser salvo: " + cliente);
                     if(fotoCliente != null){
@@ -136,7 +142,16 @@ public class ClienteAdminActivity extends AppCompatActivity {
             }
         });
 
+        bt_verPedidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ClienteAdminActivity.this, PedidosActivity.class);
+                intent.putExtra("cliente", cliente);
+                startActivity(intent);
+            }
+        });
     }
+
 
     private void uploadFotoDoCliente() {
         //faz o upload da foto do produto no firebase storage

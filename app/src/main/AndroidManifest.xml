@@ -14,9 +14,12 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.UserAdminActivity"></activity>
-        <activity android:name=".activity.ClienteAdminActivity"
-            android:label="Cliente(Admin)"/>
+        <activity android:name=".adapter.PedidosAdapter"></activity>
+        <activity android:name=".activity.PedidosActivity" />
+        <activity android:name=".activity.UserAdminActivity" />
+        <activity
+            android:name=".activity.ClienteAdminActivity"
+            android:label="Cliente(Admin)" />
         <activity
             android:name=".activity.SobreActivity"
             android:label="Sobre" />
@@ -34,8 +37,8 @@
             android:label="Clientes" />
         <activity
             android:name=".activity.ProdutosActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Produtos"/>
+            android:label="Produtos"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.LoginActivity"
             android:label="Vendas">

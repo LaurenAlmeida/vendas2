@@ -144,7 +144,10 @@ public class CarrinhoActivity extends AppCompatActivity {
                     DatabaseReference myRef = database.getReference("vendas/pedidos");
                     String key = myRef.push().getKey();
                     pedido.setKey(key);
+                    AppSetup.cliente.getPedidos().add(key);
                     myRef.child(key).setValue(pedido);
+                    myRef = database.getReference("vendas/clientes").child(AppSetup.cliente.getKey()).child("pedidos");
+                    myRef.setValue(AppSetup.cliente.getPedidos());
                     AppSetup.carrinho.clear();
                     AppSetup.cliente = null;
                     startActivity(new Intent(CarrinhoActivity.this, ProdutosActivity.class));

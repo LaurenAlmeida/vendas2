@@ -1,5 +1,6 @@
 package br.com.ifsul.vendas.activity;
 
+import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import br.com.ifsul.vendas.R;
+import br.com.ifsul.vendas.barcode.BarcodeCaptureActivity;
 
 public class SobreActivity extends AppCompatActivity {
 
@@ -21,8 +23,11 @@ public class SobreActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.home) {
-            finish();
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
         }
         return true;
     }

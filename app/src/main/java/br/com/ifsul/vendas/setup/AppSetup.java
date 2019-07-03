@@ -19,9 +19,10 @@ import br.com.ifsul.vendas.model.User;
 
 public class AppSetup {
     public static List<Produto> produtos = new ArrayList<>();
+    public static List<Produto> clientes = new ArrayList<>();
     public static Cliente cliente = null;
     public static List<ItemPedido> carrinho = new ArrayList<>();
-    public static Pedido pedido = null;
+    public static Pedido pedidos = null;
     public static User user = null;
     public static Map <String, Bitmap> cacheProdutos = new HashMap<>();
     public static Map <String, Bitmap> cacheClientes = new HashMap<>();
