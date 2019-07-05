@@ -86,7 +86,7 @@
     <string name="hint_digite_valor">hint digite o valor</string>
     <string name="label_quantidade">label qnt</string>
     <string name="hint_quantidade_digite">hint quantidade digite</string>
-    <string name="bt_salvar">bt_salvar</string>
+    <string name="bt_salvar">Salvar</string>
     <string name="toast_foto_cliente_upload_fail">toast_foto_cliente_upload_fail</string>
     <string name="toast_cliente_salvo" />
     <string name="toast_cliente_nao_cadastrado" />
@@ -104,7 +104,7 @@
     <string name="hint_nome">Nome</string>
     <string name="hint_sobrenome">sobrenome</string>
     <string name="hint_cpf">cpf</string>
-    <string name="bt_ver_pedidos">bt_pedidos</string>
+    <string name="bt_ver_pedidos">Pedidos</string>
     <string name="tvSobre">Aplicativo desenvolvido no 5 semestre do CSTSI,na disciplina de PDM</string>
     <string name="menu_user_adm">Cadastro de usuário</string>
     <string name="tv_funcao">funcao</string>

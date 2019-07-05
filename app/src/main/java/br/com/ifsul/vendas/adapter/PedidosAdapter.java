@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class PedidosAdapter extends ArrayAdapter<Pedido> {
         super(context, 0, pedido);
          this.context = context;
 
+         Log.d("cliente","oi" + pedido);
 
         }
 
@@ -68,4 +70,6 @@ public class PedidosAdapter extends ArrayAdapter<Pedido> {
                 pbFoto = convertView.findViewById(R.id.pb_foto_carrinho);
             }
         }
+
+
     }

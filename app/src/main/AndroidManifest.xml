@@ -14,9 +14,9 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".adapter.PedidosAdapter"></activity>
-        <activity android:name=".activity.PedidosActivity" />
-        <activity android:name=".activity.UserAdminActivity" />
+        <activity android:name=".adapter.PedidosAdapter" android:label="Pedidos Adapter"></activity>
+        <activity android:name=".activity.PedidosActivity" android:label="Pedidos"/>
+        <activity android:name=".activity.UserAdminActivity" android:label="Usuário Adm" />
         <activity
             android:name=".activity.ClienteAdminActivity"
             android:label="Cliente(Admin)" />

@@ -28,6 +28,7 @@ import br.com.ifsul.vendas.setup.AppSetup;
 public class PedidosActivity extends AppCompatActivity {
     private ListView lv_pedidos;
     private static final String TAG = "pedidosactivity";
+    List<Pedido> pedidos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,16 +52,21 @@ public class PedidosActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        DatabaseReference myRef = database.getReference("clientes" + AppSetup.cliente.getKey() + "pedidos");
 
-        final List<Pedido> pedidos = new ArrayList<>();
-        for (String keypedido : cliente.getPedidos()) {
+        //AppSetup.pedidos.clear();
+     pedidos = new ArrayList<>();
 
-                DatabaseReference myRef = database.getReference("vendas/pedidos").child(keypedido);
+        for (String keypedido : cliente.getPedidos()) {
+Log.d("str","teste" + keypedido);
+                DatabaseReference myRef = database.getReference().child("vendas").child("pedidos").child(keypedido);
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Log.d("data", String.valueOf(dataSnapshot.getValue(Pedido.class)));
                         Pedido pedido = dataSnapshot.getValue(Pedido.class);
-                        pedidos.add(pedido);
+                        pedido.setKey(dataSnapshot.getKey());
+
+                       pedidos.add(pedido);
+                        lv_pedidos.setAdapter(new PedidosAdapter(PedidosActivity.this, pedidos));
                     }
 
 
@@ -72,7 +78,13 @@ public class PedidosActivity extends AppCompatActivity {
                 });
 
         }
-        lv_pedidos.setAdapter(new PedidosAdapter(PedidosActivity.this, pedidos));
+
+//        Pedido ped = new Pedido();
+//        ped.setKey("0214");
+//        ped.setTotalPedido(12.00);
+//        pedidos.add(ped);
+        Log.d("teste", "Pedido"+ pedidos);
+
     }
 
     @Override
